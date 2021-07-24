@@ -1,0 +1,6 @@
+node_modules
+localhost-key.pem
+localhost.pem
+build
+dist
+.firebase
