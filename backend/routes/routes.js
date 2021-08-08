@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const jwtkey = "dsfeadsadfelki";
 const router = express.Router();
 const User = mongoose.model('UserSchema');
+const Gallery = mongoose.model('GallerySchema');
+const Menu = mongoose.model('MenuSchema');
 
 router.post('/signup', async (req, res) => {
     const {username, phone, email, password} = req.body;
@@ -32,6 +34,58 @@ router.post('/signup', async (req, res) => {
       res.send({token, id});
     } catch (err) {
       return res.status(422).send({error: 'must provide email or password'});
+    }
+  });
+
+  router.get('/gallery', (req, res) => {
+    Gallery.find({}, function (err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
+  router.post('/gallery', async (req, res) => {
+    const {name, descirption, itemType, image} = req.body;
+
+    try {
+      const newGalleryItem = new Gallery({
+        name, 
+        descirption, 
+        itemType, 
+        image
+      });
+      await newGalleryItem.save().then(() =>  res.send({response: 'ok'}));
+    }
+    catch (err) {
+      return res.status(422).send({error: 'Gallery item not saved!'});
+    }
+  });
+
+  router.get('/menu', (req, res) => {
+    Menu.find({}, function (err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
+    })
+  });
+
+  router.post('/menu', async (req, res) => {
+    const {foodName, foodDesc, foodPrice, foodSize, foodType, foodImage} = req.body;
+
+    try {
+      const newMenuItem = new Menu({
+        foodName, foodDesc, foodPrice, foodSize, foodType, foodImage
+      })
+      await newMenuItem.save().then(() => res.send({response: 'ok'}));
+    }
+    catch (err) {
+      console.log(err);
+      return res.status(422).send({error: 'Menu item not saved!'});
     }
   });
   module.exports = router;

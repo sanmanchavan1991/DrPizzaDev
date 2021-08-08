@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const {mongoUrl} = "mongodb+srv://DrPizza:drpizza@drpizza.wvusq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const {mongoUrl} = require('./keys');
 
 require('./models/UserSchema');
+require('./models/GallerySchema');
+require('./models/MenuSchema');
 const RequireAuth = require('./routes/routes');
 const AuthRoutes = require('./routes/auth');
 app.use(bodyParser.json());
