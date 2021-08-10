@@ -12,6 +12,13 @@ export const MENUITEMS = [
      },{
         title: 'Contact', path: '/contact',type: 'link'
      }
+     ,{
+      title: 'Register', path: '/register',type: 'link'
+   },{
+      title: 'Login', path: '/login',type: 'link'
+   },{
+      title: 'Authenticate', path: '/authenticate',type: 'link'
+   }
    
  ]
  

@@ -9,27 +9,33 @@ const {mongoUrl} = require('./keys');
 require('./models/UserSchema');
 require('./models/GallerySchema');
 require('./models/MenuSchema');
+
+
+
 const RequireAuth = require('./routes/routes');
 const AuthRoutes = require('./routes/auth');
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(RequireAuth);
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 mongoose.connection.on('connected', () => {
   console.log('connected to mongodb Atlas');
 });
-
 mongoose.connection.on('error', (err) => {
   console.log('Not Connecting:', err);
 });
 
-app.get('/', AuthRoutes, (req, res) => {
-  res.send({username: req.user.username});
-});
+
+
+app.use('/routes/auth', AuthRoutes);
+
+
+// app.get('/', AuthRoutes, (req, res) => {
+//   res.send({username: req.user.username});
+// });
 
 app.listen(PORT, () => {
   console.log('server running ' + PORT);

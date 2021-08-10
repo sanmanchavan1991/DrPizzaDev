@@ -1,23 +1,23 @@
 import firebase from 'firebase';
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAJckmGSHZYeOxtqA7jzXpaDBoUR1p14vQ",
-//     authDomain: "drpizzeria-fb251.firebaseapp.com",
-//     databaseURL: "https://drpizzeria-fb251-default-rtdb.firebaseio.com",
-//     projectId: "drpizzeria-fb251",
-//     storageBucket: "drpizzeria-fb251.appspot.com",
-//     messagingSenderId: "869445374385",
-//     appId: "1:869445374385:web:529c4fc4e66b8faa522d90",
-//     measurementId: "G-ZMRM4G4VTN"
-// };
-//dev
 const firebaseConfig = {
-    apiKey: "AIzaSyARLmgeSM3_7TRGAaeAXUAdecBlPf8BNZc",
-    authDomain: "drpizzeria-dev.firebaseapp.com",
-    projectId: "drpizzeria-dev",
-    storageBucket: "drpizzeria-dev.appspot.com",
-    messagingSenderId: "739600836782",
-    appId: "1:739600836782:web:a2520e4c5208a719a0253f"
+    apiKey: "AIzaSyAJckmGSHZYeOxtqA7jzXpaDBoUR1p14vQ",
+    authDomain: "drpizzeria-fb251.firebaseapp.com",
+    databaseURL: "https://drpizzeria-fb251-default-rtdb.firebaseio.com",
+    projectId: "drpizzeria-fb251",
+    storageBucket: "drpizzeria-fb251.appspot.com",
+    messagingSenderId: "869445374385",
+    appId: "1:869445374385:web:529c4fc4e66b8faa522d90",
+    measurementId: "G-ZMRM4G4VTN"
 };
+//dev
+// const firebaseConfig = {
+//     apiKey: "AIzaSyARLmgeSM3_7TRGAaeAXUAdecBlPf8BNZc",
+//     authDomain: "drpizzeria-dev.firebaseapp.com",
+//     projectId: "drpizzeria-dev",
+//     storageBucket: "drpizzeria-dev.appspot.com",
+//     messagingSenderId: "739600836782",
+//     appId: "1:739600836782:web:a2520e4c5208a719a0253f"
+// };
 //PROD
 // const firebaseConfig = {
 //     apiKey: "AIzaSyAJckmGSHZYeOxtqA7jzXpaDBoUR1p14vQ",

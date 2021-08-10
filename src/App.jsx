@@ -5,6 +5,7 @@ import { Navigation } from './components/navigation'
 import { Gallery } from './components/gallery'
 import { Menus } from './components/menus'
 import { Home } from './components/home'
+import { Provider } from 'react-redux';
 
 import {BrowserRouter as Router,Switch,Route,useLocation} from 'react-router-dom';
 
@@ -13,7 +14,10 @@ import MasterFooterTwo from './components/footers/common/MasterFooterTwo';
 import Contact from './components/contact-us/contact';
 import Error from './components/error/error';
 import PageNotFound from './components/error/pageNotFound';
-
+import RegisterModal from './components/auth/RegisterModal';
+import LoginModal from './components/auth/LoginModal';
+import Authenticate from './components/auth/authenticate';
+import store from './store';
 
 const App = () => {
   
@@ -48,6 +52,7 @@ const App = () => {
       <header>      
         <Navigation />
        </header>
+       <Provider store={store}>
 
         <Switch>
           <Route path="/" exact render={(props) => landingPageData && landingPageData.about?(<Home  
@@ -64,9 +69,13 @@ const App = () => {
           
           /> 
         
+        <Route path="/login" component={LoginModal}   />   
+                   <Route path="/register" component={RegisterModal}   />   
+                   <Route path="/authenticate" component={Authenticate}   />   
 
          <Route  component={Error}/>
         </Switch>
+        </Provider>
         <ThemeSettings />
           <MasterFooterTwo
           
