@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+var cors = require('cors')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,13 @@ require('./models/MenuSchema');
 
 
 
+app.options('*', cors()) // include before other routes
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+  });
 const RequireAuth = require('./routes/routes');
 const AuthRoutes = require('./routes/auth');
 app.use(express.json());

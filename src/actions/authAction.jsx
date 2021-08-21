@@ -48,7 +48,7 @@ export const loadUser = () => (dispatch, getState) => {
     const body = JSON.stringify({ fullName,phoneNumber, email, password });
   
     axios
-      .post('/routes/auth/register', body, config)
+      .post(staticRoute+'/routes/auth/register', body, config)
       .then(res =>
         dispatch({
           type: REGISTER_SUCCESS,

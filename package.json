@@ -36,6 +36,7 @@
     "bootstrap": "^5.0.0",
     "bootstrap-scss": "^4.5.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "emailjs-com": "^2.6.4",
     "express": "^4.17.1",
