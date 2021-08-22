@@ -11,9 +11,8 @@ const GallerySchema = new mongoose.Schema(
         itemType: {
             type: String
         },
-        image: {
-            data: Buffer, 
-            contentType: String
+        imageURL: {
+            type: String
         }
     }
 )

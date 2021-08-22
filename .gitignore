@@ -4,3 +4,5 @@ localhost.pem
 build
 dist
 .firebase
+.vscode
+_logs

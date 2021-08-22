@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Media, Container, Row } from "reactstrap";
 import Lightbox from "react-image-lightbox";
-import {
-    allData,
-    pizzaData,
-    shakeData,
-    menuData,
-    shoesData,
-    watchData,
-  } from "../constant/portfolioData";
+import { getItems} from '../../actions/galleryAction';
 
 const allimages = [
   require("./../../assets/images/Gallery/Pizza/fullPizza.jpeg"),
@@ -57,27 +51,33 @@ const menuImages = [
   require("./../../assets/images/Gallery/Menu/5chef-special-Nonveg.png"),
 ];
 
-const GridTwoPage = ({ colClass, limit }) => {
-  const l = parseInt(limit);
-  const [activeTab, setActiveTab] = useState("all");
-  const initilindex = { index: 0, isOpen: false };
-  const [photoIndex, setPhotoIndex] = useState(initilindex);
+const GridTwoPage = ({ getItems,images ,isLoading,colClass, limit }) => {
 
+
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
+
+
+   const [activeTab, setActiveTab] = useState("all");
+   const initilindex = { index: 0, isOpen: false };
+   const [photoIndex, setPhotoIndex] = useState(initilindex);
 
   const MasterTabPannel = ({ img,type }) => {
     
-     let allArr=allData
+     let allArr=images
     if(type==='pizza')
     {
-        allArr=pizzaData
+        allArr=images.filter((x) => { return x.itemType ==='pizzaData'; })
+        //pizzaData
     }
     else if(type==='shake')
     {
-        allArr=shakeData
+        allArr=images.filter((x) => { return x.itemType ==='shakeData'; })
     }
     else if(type==='menu')
     {
-        allArr=menuData
+        allArr=images.filter((x) => { return x.itemType ==='menuData'; })
     }
     return (
       
@@ -104,7 +104,7 @@ const GridTwoPage = ({ colClass, limit }) => {
                           <i className="fa fa-plus" aria-hidden="true"></i>
                         </div>
                         <Media
-                          src={product.img1}
+                          src={product.imageURL}
                           className="img-fluid blur-up lazyload bg-img"
                         />
                       </a>
@@ -150,6 +150,7 @@ const GridTwoPage = ({ colClass, limit }) => {
   };
 
   return (
+   
     <section className="portfolio-section grid-portfolio ratio2_3 portfolio-padding">
       <Container>
         <Tabs>
@@ -211,4 +212,10 @@ const GridTwoPage = ({ colClass, limit }) => {
   );
 };
 
-export default GridTwoPage;
+//export default GridTwoPage;
+const mapStateToProps = (state) => ({
+  images: state.gallery.images,
+  isLoading: state.gallery.isLoading
+});
+
+export default connect(mapStateToProps, { getItems })(GridTwoPage);

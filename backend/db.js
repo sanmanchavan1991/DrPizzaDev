@@ -22,6 +22,7 @@ app.use(function(req, res, next) {
   });
 const RequireAuth = require('./routes/routes');
 const AuthRoutes = require('./routes/auth');
+const GalleryRoutes = require('./routes/gallery');
 app.use(express.json());
 app.use(RequireAuth);
 
@@ -39,6 +40,7 @@ mongoose.connection.on('error', (err) => {
 
 
 app.use('/routes/auth', AuthRoutes);
+app.use('/routes/gallery', GalleryRoutes);
 
 
 // app.get('/', AuthRoutes, (req, res) => {

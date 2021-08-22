@@ -18,7 +18,6 @@ import {
 import { connect } from "react-redux";
 import { login } from "../../actions/authAction";
 import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/CommonLayout";
 
 const LoginModal = ({ isAuthenticated, error, register, clearErrors }) => {
   const [modal, setModal] = useState(false);
@@ -65,55 +64,49 @@ const LoginModal = ({ isAuthenticated, error, register, clearErrors }) => {
 
   return (
     <div>
-      {/* <CommonLayout parent="home" title="Register">
-        <section className="contact-page section-b-space">
-          <Container>
-            <Row className="section-b-space">
-              <Col lg="5"> */}
-                {msg ? <Alert color="danger">{msg}</Alert> : null}
-                <Form className="theme-form" >
-                  <FormGroup>
-                    <Row>
-                      <Col md="6">
-                        <Label for="email">Email</Label>
-                        <Input
-                          type="email"
-                          onChange={handleChangeEmail}
-                          className="form-control"
-                          id="email"
-                          name="email"
-                          placeholder="Enter Your email"
-                          required
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="6">
-                        <Label for="password">Password</Label>
-                        <Input
-                          type="password"
-                          onChange={handleChangePassword}
-                          className="form-control"
-                          id="password"
-                          name="password"
-                          placeholder="Password"
-                          required
-                        />
-                      </Col>
+      {msg ? <Alert color="danger">{msg}</Alert> : null}
+      <Form className="theme-form">
+        <FormGroup>
+          <Row>
+            <Col md="6">
+              <Label for="email">Email</Label>
+              <Input
+                type="email"
+                onChange={handleChangeEmail}
+                className="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter Your email"
+                required
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md="6">
+              <Label for="password">Password</Label>
+              <Input
+                type="password"
+                onChange={handleChangePassword}
+                className="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </Col>
 
-                      <Col md="12">
-                        <button className="btn btn-solid" type="submit"  onClick={handleOnSubmit}>
-                          Login
-                        </button>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                </Form>
-              {/* </Col>
-            </Row>
-          </Container>
-        </section>
-      </CommonLayout> */}
+            <Col md="12">
+              <button
+                className="btn btn-solid"
+                type="submit"
+                onClick={handleOnSubmit}
+              >
+                Login
+              </button>
+            </Col>
+          </Row>
+        </FormGroup>
+      </Form>
     </div>
   );
 };
