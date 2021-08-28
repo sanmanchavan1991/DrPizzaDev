@@ -1,14 +1,14 @@
-import firebase from 'firebase';
-const firebaseConfig = {
-    apiKey: "AIzaSyAJckmGSHZYeOxtqA7jzXpaDBoUR1p14vQ",
-    authDomain: "drpizzeria-fb251.firebaseapp.com",
-    databaseURL: "https://drpizzeria-fb251-default-rtdb.firebaseio.com",
-    projectId: "drpizzeria-fb251",
-    storageBucket: "drpizzeria-fb251.appspot.com",
-    messagingSenderId: "869445374385",
-    appId: "1:869445374385:web:529c4fc4e66b8faa522d90",
-    measurementId: "G-ZMRM4G4VTN"
-};
+//import firebase from 'firebase';
+// const firebaseConfig = {
+//     apiKey: "AIzaSyAJckmGSHZYeOxtqA7jzXpaDBoUR1p14vQ",
+//     authDomain: "drpizzeria-fb251.firebaseapp.com",
+//     databaseURL: "https://drpizzeria-fb251-default-rtdb.firebaseio.com",
+//     projectId: "drpizzeria-fb251",
+//     storageBucket: "drpizzeria-fb251.appspot.com",
+//     messagingSenderId: "869445374385",
+//     appId: "1:869445374385:web:529c4fc4e66b8faa522d90",
+//     measurementId: "G-ZMRM4G4VTN"
+// };
 //dev
 // const firebaseConfig = {
 //     apiKey: "AIzaSyARLmgeSM3_7TRGAaeAXUAdecBlPf8BNZc",
@@ -29,31 +29,31 @@ const firebaseConfig = {
 //     appId: "1:869445374385:web:529c4fc4e66b8faa522d90",
 //     measurementId: "G-ZMRM4G4VTN"
 // };
-const firebaseApp=firebase.initializeApp(firebaseConfig);
-const db=firebase.firestore();
-firebase.analytics();
+// const firebaseApp=firebase.initializeApp(firebaseConfig);
+// const db=firebase.firestore();
+// firebase.analytics();
 
 
-export const createGroceryList = (userName, userId) => {
-    return db.collection('groceryLists')
-        .add({
-            created: firebase.firestore.FieldValue.serverTimestamp(),
-            createdBy: userId,
-            users: [{ 
-                userId: userId,
-                name: userName
-            }]
-        });
-};
-export const getDesignData = companyId => {
-    const data= db.collection('designData').where("resturantId", "in", ["zAwmKFdIgqxwy4vfT6GL"]).get();
-    return data
-};
+// export const createGroceryList = (userName, userId) => {
+//     return db.collection('groceryLists')
+//         .add({
+//             created: firebase.firestore.FieldValue.serverTimestamp(),
+//             createdBy: userId,
+//             users: [{ 
+//                 userId: userId,
+//                 name: userName
+//             }]
+//         });
+// };
+// export const getDesignData = companyId => {
+//     const data= db.collection('designData').where("resturantId", "in", ["zAwmKFdIgqxwy4vfT6GL"]).get();
+//     return data
+// };
 
-export const getMenuData = companyId => {
-    const data= db.collection('menus').orderBy("id").get();
-    return data
-};
+// export const getMenuData = companyId => {
+//     const data= db.collection('menus').orderBy("id").get();
+//     return data
+// };
 
 
 

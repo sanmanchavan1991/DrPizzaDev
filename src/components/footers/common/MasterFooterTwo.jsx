@@ -12,8 +12,6 @@ const MasterFooterTwo = ({
   footerLogoClass,
   btnGreen,
   myAccount,
-  leftFooter,
-  rightFooter
 }) => {
   const [isOpen, setIsOpen] = useState();
   const [collapse, setCollapse] = useState(0);
@@ -67,13 +65,13 @@ const MasterFooterTwo = ({
                         )}
                       </div>
                       <p>
-                      {leftFooter && leftFooter.heading1}
+                      Dr. Pizzeria by Dr. Maaz Ahmed Ansari,
                       </p>
                       <p>
-                      {leftFooter && leftFooter.heading2}
+                      Dentist by profession and an avid pizza lover,
                       </p>
                       <p>
-                      {leftFooter && leftFooter.heading3}
+                      Handcrafted Neapolitan Pizza
                       </p>
                     </div>
                   </Collapse>
@@ -102,13 +100,13 @@ const MasterFooterTwo = ({
                   >
                     <div className="footer-contant">
                       <ul className="contact-details">
-                        <li> {rightFooter && rightFooter.heading1}</li>
-                        <li>Call Us: {rightFooter && rightFooter.phoneNo}</li>
+                        <li> Dr. Pizzeria Store, India Mumbai 400070</li>
+                        <li>Call Us: 9833305492</li>
                         <li>
-                          Email Us: <a href={null}>{rightFooter && rightFooter.emailId}</a>
+                          Email Us: <a href={null}>maaz.ansari0108@gmail.com</a>
                         </li>
-                        <li>Timing: {rightFooter && rightFooter.timing}</li>
-                        <li>Delivery: {rightFooter && rightFooter.delivery}</li>
+                        <li>Timing: 6pm to 10 pm</li>
+                        <li>Delivery: Only in Mumbai</li>
 
                       </ul>
                     </div>

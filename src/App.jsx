@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 
 import {BrowserRouter as Router,Switch,Route,useLocation} from 'react-router-dom';
 
-import *  as FirestoreService  from './firebaseService/Firestore';
 import MasterFooterTwo from './components/footers/common/MasterFooterTwo';
 import Contact from './components/contact-us/contact';
 import Error from './components/error/error';
@@ -26,22 +25,6 @@ const App = () => {
   
 
  
-  useEffect(() => {
-    FirestoreService.getDesignData()
-      .then(response => {
-        const fetchedDesignData = [];
-        response.docs.forEach(document => {
-          setError(null);
-          fetchedDesignData.push(document.data());
-        });
-        setLandingPageData(fetchedDesignData[0]);
-      })
-      .catch(error => {
-        setError(error);
-        console.log('FirestoreService error==>',error)
-      });
-  },[]);
-
   return (
 
   <Router>
@@ -55,19 +38,14 @@ const App = () => {
        <Provider store={store}>
 
         <Switch>
-          <Route path="/" exact render={(props) => landingPageData && landingPageData.about?(<Home  
-          data={landingPageData.about.slider} 
-          aboutUsData={landingPageData.about} 
-          sectionData={landingPageData.about.sections}
-          />):null}/>
+        
+          <Route path="/" exact  component={Home}/>
           <Route path="/gallery" component={Gallery}/>
           <Route path="/menus" component={Menus}/>
-         <Route path="/contact" render={(props) => landingPageData && landingPageData.contactUs?(<Contact  
-          contactUsInformation={landingPageData.contactUs.ContactUsInformation}
-          emailJsInformation={landingPageData.contactUs.emailJsInformation}  />):null} 
+          <Route path="/contact" component={Contact}/>
+     
           
-          
-          /> 
+           
         
         <Route path="/login" component={LoginModal}   />   
                    <Route path="/register" component={RegisterModal}   />   
@@ -85,9 +63,6 @@ const App = () => {
           belowSection={"section-b-space light-layout"}
           newLatter={false}
           logoName={"logo/f5.png"}
-          leftFooter={landingPageData && landingPageData.footer ? landingPageData.footer.leftFooter:null}
-          rightFooter={landingPageData && landingPageData.footer ?landingPageData.footer.rightFooter:null} 
-          
           />
     </div>
       </Router>

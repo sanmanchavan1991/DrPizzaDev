@@ -34,6 +34,37 @@ const templateParams = {
    }
 
 const Contact = (props) => {
+
+  const contactUsInformation=[
+    {
+      desc1: "+91-9833305492",
+      img: "fa-phone",
+      title: "Contact us",
+    },
+    {
+      desc1: "Taximen's Colony, Near Bandra Kurla Complex",
+      desc2: "Kurla West, Mumbai-400070",
+      img: "fa-map-marker",
+      title: "Address",
+    },
+    {
+      desc1: "maaz.ansari0108@gmail.com",
+      img: "fa-envelope-o",
+      title: "email Address",
+    },
+    {
+      desc1: "6pm to 9pm",
+      img: "fa-clock-o",
+      title: "Timing",
+    },
+  ]
+const emailJsInformation={
+  "onwerName":"Maaz Ansari"
+  ,"serviceId":"gmail"
+  ,"templateId":"contact_us_template"
+  ,"userId":"user_Wqt0nf64PrqwcEYf2cPRt"
+}
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -65,11 +96,11 @@ const Contact = (props) => {
       }
     const sendEmail=(e)=> {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-        let template_Id = props.emailJsInformation.templateId
-        let service_Id =props.emailJsInformation.serviceId
-        let user_Id =props.emailJsInformation.userId
+        let template_Id = emailJsInformation.templateId
+        let service_Id =emailJsInformation.serviceId
+        let user_Id =emailJsInformation.userId
         templateParams.from_name=firstName +' '+ lastName 
-         templateParams.to_name=props.emailJsInformation.onwerName
+         templateParams.to_name=emailJsInformation.onwerName
          
          templateParams.user_phone=phoneNumber
          templateParams.user_email=email
@@ -171,7 +202,7 @@ const Contact = (props) => {
             <Col lg="5">
               <div className="contact-right">
                 <ul>
-                  {props.contactUsInformation.map((data, i) => {
+                  {contactUsInformation.map((data, i) => {
                     return (
                       <ContactDetail
                         key={i}
