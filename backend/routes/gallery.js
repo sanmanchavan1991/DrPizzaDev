@@ -23,6 +23,22 @@ router.get("/images", async (req, res) => {
 /**
  * @route   POST routes/gallery/images
  * @desc    POST List images data
+ * @post {
+    "listImagesJSON": [
+        {
+            "name": "Gourmet veg 1",
+            "description": "menuData",
+            "itemType": "menuData",
+            "imageURL": "img/Gallery/Menu/1gourmet-veg.jpg"
+        },
+        {
+            "name": "Gourmet veg 112",
+            "description": "menuData",
+            "itemType": "menuData",
+            "imageURL": "img/Gallery/Menu/1gourmet-veg.jpg"
+        }
+    ]
+}
  * @access  Private
  */
 router.post("/images", async (req, res) => {

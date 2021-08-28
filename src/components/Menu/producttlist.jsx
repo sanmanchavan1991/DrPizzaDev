@@ -2,11 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { Col, Row, Media, Button, Spinner } from "reactstrap";
 import Menu2 from "../../../src/assets/images/mega-menu/22.jpg";
 import { CurrencyContext } from "../../../src/components/Currency/CurrencyContext";
-import *  as FirestoreService from './../../firebaseService/Firestore';
 import ProductItem from "./ProductBox1";
+import { getMenus} from '../../actions/MenuAction';
+import { connect } from 'react-redux';
 
 
-const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
+const ProductList = ({ getMenus,menus ,colClass, layoutList, openSidebar, noSidebar }) => {
   const [selectedCurr, selectedCurrency] = useState({
     currency: "INR",
     symbol: "₹",
@@ -17,25 +18,28 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
 
 
 
-  const [menuData, setMenuData] = useState({})
+  // const [menuData, setMenuData] = useState({})
   const [error, setError] = useState();
-  useEffect(() => {
+  // useEffect(() => {
   
-    FirestoreService.getMenuData()
-      .then(response => {
-        const fetchedDesignData = [];
-        response.docs.forEach(document => {
-          setError(null);
-          fetchedDesignData.push(document.data());
-        });
-        setMenuData(fetchedDesignData);
-      })
-      .catch(error => {
-        setError(error);
-        console.log('FirestoreService error==>', error)
-      });
-  }, []);
+  //   FirestoreService.getMenuData()
+  //     .then(response => {
+  //       const fetchedDesignData = [];
+  //       response.docs.forEach(document => {
+  //         setError(null);
+  //         fetchedDesignData.push(document.data());
+  //       });
+  //       setMenuData(fetchedDesignData);
+  //     })
+  //     .catch(error => {
+  //       setError(error);
+  //       console.log('FirestoreService error==>', error)
+  //     });
+  // }, []);
 
+  useEffect(() => {
+    getMenus();
+  }, [getMenus]);
 
   const curContext = useContext(CurrencyContext);
   const [grid, setGrid] = useState(colClass);
@@ -124,7 +128,7 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
                               src={`/assets/images/icon/2.png`}
                               alt=""
                               className="product-2-layout-view"
-                              onClick={() => setGrid("col-lg-6")}
+                              //onClick={() => setGrid("col-lg-6")}
                             />
                           </li>
                           <li>
@@ -180,7 +184,7 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
               <div className={`product-wrapper-grid ${layout}`}>
                 <Row>
 
-                  {menuData && menuData.length > 0 && menuData.map((product, i) => (
+                  {menus && menus.length > 0 && menus.map((product, i) => (
                     <div className={grid} key={i}>
                       <div className="product">
                         <div>
@@ -207,4 +211,10 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
   );
 };
 
-export default ProductList;
+//export default ProductList;
+const mapStateToProps = (state) => ({
+  menus: state.menu.menus,
+  isLoading: state.menu.isLoading
+});
+
+export default connect(mapStateToProps, { getMenus })(ProductList);

@@ -20,13 +20,13 @@ const MasterProductDetail = ({
     <div className={`product-detail ${productDetail} ${detailClass}`}>
       <div>
 
-        <h6>{product.title}</h6>
-        <h6>{product.size}</h6>
-        {des ? <p>{product.description}</p> : ""}
+        <h6>{product.foodName}</h6>
+        <h6>{product.foodSize}</h6>
+        {des ? <p>{product.foodDesc}</p> : ""}
         <h4>
           {currency.symbol}
           {(
-            (product.price - (product.price * product.discount) / 100) *
+            (product.foodPrice - (product.foodPrice * 1) / 100) *
             currency.value
           ).toFixed(2)}
 

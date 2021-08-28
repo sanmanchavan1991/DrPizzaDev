@@ -23,3 +23,8 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_IMAGES = 'GET_IMAGES';
 export const Images_LOADING = 'Images_LOADING';
 export const Images_LOADED = 'Images_LOADED';
+
+//Menus
+export const GET_MENUS = 'GET_MENUS';
+export const MENUS_LOADING = 'MENUS_LOADING';
+export const MENUS_LOADED = 'MENUS_LOADED';
