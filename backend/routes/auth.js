@@ -96,7 +96,7 @@ const router = express.Router();
       }
     });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+    res.status(400).json({ msg: e.message });
   }
 });
 

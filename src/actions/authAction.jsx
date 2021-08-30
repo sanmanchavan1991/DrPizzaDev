@@ -70,6 +70,8 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch
   ) => {
     // Headers
+    console.log('I am here')
+
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -80,7 +82,7 @@ export const loadUser = () => (dispatch, getState) => {
     const body = JSON.stringify({ email, password });
   
     axios
-      .post('/routes/auth/login', body, config)
+      .post(staticRoute+'/routes/auth/login', body, config)
       .then(res =>
         dispatch({
           type: LOGIN_SUCCESS,
