@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       required: true,
     },
+    resetLink: {
+      type: String,
+      default:''
+    },
   },
   {
     toJSON: {
