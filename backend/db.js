@@ -24,6 +24,7 @@ const RequireAuth = require('./routes/routes');
 const AuthRoutes = require('./routes/auth');
 const GalleryRoutes = require('./routes/gallery');
 const MenuRoutes = require('./routes/menu');
+const ForgotPassRoutes = require('./routes/passwordReset');
 app.use(express.json());
 app.use(RequireAuth);
 
@@ -43,6 +44,7 @@ mongoose.connection.on('error', (err) => {
 app.use('/routes/auth', AuthRoutes);
 app.use('/routes/gallery', GalleryRoutes);
 app.use('/routes/menu', MenuRoutes);
+app.use('/routes/passwordReset', ForgotPassRoutes);
 
 
 // app.get('/', AuthRoutes, (req, res) => {
