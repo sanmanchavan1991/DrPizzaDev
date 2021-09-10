@@ -28,3 +28,10 @@ export const Images_LOADED = 'Images_LOADED';
 export const GET_MENUS = 'GET_MENUS';
 export const MENUS_LOADING = 'MENUS_LOADING';
 export const MENUS_LOADED = 'MENUS_LOADED';
+
+//forgot and Reset Password
+
+export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
+export const SEND_EMAIL_FAIL = "SEND_EMAIL_FAIL";
+export const PASSWORD_RESET_SUCCESS = "PASSWORD_RESET_SUCCESS";
+export const PASSWORD_RESET_FAIL = "PASSWORD_RESET_FAIL";

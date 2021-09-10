@@ -9,7 +9,7 @@ const { jwtkeyPassReset } = require("../keys");
 const router = express.Router();
 require("dotenv").config();
 
-const staticRoute = "http://localhost:3001";
+const staticRoute = "https://localhost:3001";
 /**
  * @route   POST routes/passwordReset/sendEmail
  * @desc    sendEmail

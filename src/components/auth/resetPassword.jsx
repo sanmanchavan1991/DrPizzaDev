@@ -17,20 +17,23 @@ import {
 } from "reactstrap";
 
 import { connect } from "react-redux";
-import { forgotPassword } from "../../actions/authAction";
+import { resetPassword } from "../../actions/authAction";
 import { clearErrors } from "../../actions/errorActions";
 import CommonLayout from "../layout/CommonLayout";
-//import { useHistory } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
 
-const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
+const ResetPassword = ({  error, resetPassword, clearErrors }) => {
   const [modal, setModal] = useState(false);
-  const [email, setEmail] = useState("");
+  
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   //const [password, setPassword] = useState("");
   const [msg, setMsg] = useState(null);
   
   //const history = useHistory();
+  let { token } = useParams();
 
-
+  console.log("token==>",token);
   const handleToggle = useCallback(() => {
     // Clear errors
     clearErrors();
@@ -38,7 +41,7 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
   }, [clearErrors, modal]);
   useEffect(() => {
     // Check for register error
-    if (error.id === "SEND_EMAIL_FAIL") {
+    if (error.id === "PASSWORD_RESET_FAIL") {
       setMsg(error.msg.msg);
     } else {
       setMsg(null);
@@ -52,16 +55,18 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
     // }
   }, [error, handleToggle,  modal]);
 
-  const handleChangeEmail = (e) => setEmail(e.target.value);
+  const handleChangePassword = (e) => setPassword(e.target.value);
+  const handleChangeConfirmPassword = (e) => setConfirmPassword(e.target.value);
   // const handleChangePassword = (e) => setPassword(e.target.value);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log("saaaa");
-    const user = { email };
+    const user = {token, password };  
+    console.log("sanman this.token==>",token);
 
     // Attempt to login
-    forgotPassword(user);
+    resetPassword(user);
   };
 //   const handleClickForgotPass = () => {
 //     history.push("/forgotPassword");
@@ -69,7 +74,7 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
 //   const handleOnRegister = () => {
 //     history.push("/register");
 //   };
-  //console.log("msg==>", msg);
+  console.log("msg==>", msg);
 
   return (
     <div>
@@ -81,20 +86,33 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
               <Col lg="1"></Col>
               <Col lg="4" className="login-box">
                 {msg ? <span>{msg}</span> : null}
-                {msg ? <span>{msg}</span> : null}
 
                 <Form className="theme-form">
                   <FormGroup>
                     <Row>
-                      <Col md="6" sm>
-                        <Label for="email">Email</Label>
+                      <Col md="6" >
+                      <Label for="password">Password</Label>
                         <Input
-                          type="email"
-                          onChange={handleChangeEmail}
+                          type="password"
+                          onChange={handleChangePassword}
                           className="form-control"
-                          id="email"
-                          name="email"
-                          placeholder="Enter Your email"
+                          id="password"
+                          name="password"
+                          placeholder="Password"
+                          required
+                        />
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col md="6" >
+                      <Label for="password">Re-Enter Password</Label>
+                        <Input
+                          type="password"
+                          onChange={handleChangeConfirmPassword}
+                          className="form-control"
+                          id="confirmPassword"
+                          name="confirmPassword"
+                          placeholder="Re-Enter Password"
                           required
                         />
                       </Col>
@@ -103,13 +121,13 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
 
                    
                     <Row>
-                      <Col md="2">
+                      <Col md="8">
                         <button
                           className="btn btn-solid"
                           type="submit"
                           onClick={handleOnSubmit}
                         >
-                          Send Reset-Link
+                          Reset-Password
                         </button>
                       </Col>
                       
@@ -127,6 +145,7 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
 
 const mapStateToProps = (state) => ({
   error: state.error,
+ // token:state.auth.token
 });
 
-export default connect(mapStateToProps, { forgotPassword, clearErrors })(ForgotPassModal);
+export default connect(mapStateToProps, { resetPassword, clearErrors })(ResetPassword);
