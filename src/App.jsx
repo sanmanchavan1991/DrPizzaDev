@@ -14,15 +14,16 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import MasterFooterTwo from "./components/footers/common/MasterFooterTwo";
-import Contact from "./components/contact-us/contact";
-import Error from "./components/error/error";
-import PageNotFound from "./components/error/pageNotFound";
-import RegisterModal from "./components/auth/RegisterModal";
-import LoginModal from "./components/auth/LoginModal";
-import resetPassword from "./components/auth/resetPassword";
-import ForgotPassModal from "./components/auth/forgotPassword";
-import store from "./store";
+import *  as FirestoreService  from './firebaseService/Firestore';
+import MasterFooterTwo from './components/footers/common/MasterFooterTwo';
+import Contact from './components/contact-us/contact';
+import Error from './components/error/error';
+import PageNotFound from './components/error/pageNotFound';
+import RegisterModal from './components/auth/RegisterModal';
+import LoginModal from './components/auth/LoginModal';
+import Authenticate from './components/auth/authenticate';
+import store from './store';
+import AdminCheck from './components/admin/AdminCheck';
 
 const App = () => {
   const [landingPageData, setLandingPageData] = useState({});
@@ -45,7 +46,26 @@ const App = () => {
             <Route path="/login" component={LoginModal} />
             <Route path="/register" component={RegisterModal} />
             <Route path="/authenticate" component={ForgotPassModal} />
-
+          </Switch>
+        <Switch>
+          <Route path="/" exact render={(props) => landingPageData && landingPageData.about?(<Home  
+          data={landingPageData.about.slider} 
+          aboutUsData={landingPageData.about} 
+          sectionData={landingPageData.about.sections}
+          />):null}/>
+          <Route path="/gallery" component={Gallery}/>
+          <Route path="/menus" component={Menus}/>
+         <Route path="/contact" render={(props) => landingPageData && landingPageData.contactUs?(<Contact  
+          contactUsInformation={landingPageData.contactUs.ContactUsInformation}
+          emailJsInformation={landingPageData.contactUs.emailJsInformation}  />):null} 
+          
+          
+          /> 
+        
+        <Route path="/login" component={LoginModal}   />   
+                   <Route path="/register" component={RegisterModal}   />   
+                   <Route path="/authenticate" component={Authenticate}   /> 
+                   <Route path="/admin" component={AdminCheck}   />  
 
             {/* Pages not listed on Menu */}
             <Route path="/forgotPassword" component={ForgotPassModal} />
@@ -63,10 +83,13 @@ const App = () => {
           belowSection={"section-b-space light-layout"}
           newLatter={false}
           logoName={"logo/f5.png"}
-        />
-      </div>
-    </Router>
-  );
-};
+          leftFooter={landingPageData && landingPageData.footer ? landingPageData.footer.leftFooter:null}
+          rightFooter={landingPageData && landingPageData.footer ?landingPageData.footer.rightFooter:null} 
+          
+          />
+    </div>
+      </Router>
+  )
+}
 
 export default App;

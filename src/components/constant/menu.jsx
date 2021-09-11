@@ -18,6 +18,8 @@ export const MENUITEMS = [
       title: 'Login', path: '/login',type: 'link'
    },{
       title: 'Authenticate', path: '/authenticate',type: 'link'
+   },{
+      title: 'Admin', path: '/admin',type: 'link'
    }
    
  ]

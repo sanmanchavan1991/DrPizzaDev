@@ -22,9 +22,8 @@ const MenuSchema = new mongoose.Schema(
             required: true
         },
         foodImage: {
-            type: String
-            // data: Buffer, 
-            // contentType: String
+            data: Buffer, 
+            contentType: String
         }
     }
 );
