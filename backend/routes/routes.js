@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+const multer = require('multer');
 mongoose.set('useFindAndModify', false);
 const jwt = require('jsonwebtoken');
 const jwtkey = "dsfeadsadfelki";
@@ -7,6 +9,18 @@ const router = express.Router();
 const User = mongoose.model('UserSchema');
 const Gallery = mongoose.model('GallerySchema');
 const Menu = mongoose.model('MenuSchema');
+
+var appDir = path.dirname(require.main.path);
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, path.join(appDir, '/public/img/MenuTab'))
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now() + ".png")
+  }
+});
+
+var upload = multer({ storage: storage });
 
 router.post('/signup', async (req, res) => {
     const {username, phone, email, password} = req.body;
@@ -20,7 +34,15 @@ router.post('/signup', async (req, res) => {
       return res.status(422).send(err.message);
     }
   });
-  
+  router.get('/user', async (req, res) => {
+    User.find({}, function (err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
   router.post('/login', async (req, res) => {
     const {email, password} = req.body;
     if (!email || !password) {
@@ -74,18 +96,26 @@ router.post('/signup', async (req, res) => {
     })
   });
 
-  router.post('/menu', async (req, res) => {
-    const {foodName, foodDesc, foodPrice, foodSize, foodType, foodImage} = req.body;
-
-    try {
-      const newMenuItem = new Menu({
-        foodName, foodDesc, foodPrice, foodSize, foodType, foodImage
-      })
-      await newMenuItem.save().then(() => res.send({response: 'ok'}));
-    }
-    catch (err) {
-      console.log(err);
-      return res.status(422).send({error: 'Menu item not saved!'});
+  router.post('/menu', upload.single('image'), async (req, res) => {  
+    if (req.body !== undefined && req.body !== null) {
+      try {
+        const newMenuItem = new Menu({
+          foodName: req.body.foodName, 
+        foodDesc: req.body.foodDesc,
+        foodPrice: req.body.foodPrice,
+        foodSize: req.body.foodSize, 
+        foodType: req.body.foodType,
+        foodImage: req.file.filename
+        })
+        await newMenuItem.save().then(() => res.send({response: 'ok'})).catch(err=> console.log("notsaved", err));
+      }
+      catch (err) {
+        console.log(err);
+        return res.status(422).send({error: 'Menu item not saved!'});
+      }
+    }  
+    else {
+      console.log("<<<<<<<<<<<<<<<WAITING>>>>>>>>>>>>>")
     }
   });
-  module.exports = router;
+module.exports = router;

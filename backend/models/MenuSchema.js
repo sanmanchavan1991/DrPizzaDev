@@ -29,7 +29,7 @@ const MenuSchema = new mongoose.Schema(
         countInStock: {
           type: Number,
           required: true,
-        },
+        }
     }
 );
 
