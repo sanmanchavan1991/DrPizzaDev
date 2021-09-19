@@ -25,6 +25,8 @@ import ForgotPassModal from "./components/auth/forgotPassword";
 
 import ProductScreen from "./components/Menu/ProductScreen";
 import CartScreen from "./components/cart/CartScreen";
+import AdminCheck from './components/admin/AdminCheck';
+
 import store from "./store";
 
 const App = () => {
@@ -49,26 +51,8 @@ const App = () => {
             <Route path="/login" component={LoginModal} />
             <Route path="/register" component={RegisterModal} />
             <Route path="/authenticate" component={ForgotPassModal} />
-          </Switch>
-        <Switch>
-          <Route path="/" exact render={(props) => landingPageData && landingPageData.about?(<Home  
-          data={landingPageData.about.slider} 
-          aboutUsData={landingPageData.about} 
-          sectionData={landingPageData.about.sections}
-          />):null}/>
-          <Route path="/gallery" component={Gallery}/>
-          <Route path="/menus" component={Menus}/>
-         <Route path="/contact" render={(props) => landingPageData && landingPageData.contactUs?(<Contact  
-          contactUsInformation={landingPageData.contactUs.ContactUsInformation}
-          emailJsInformation={landingPageData.contactUs.emailJsInformation}  />):null} 
-          
-          
-          /> 
-        
-        <Route path="/login" component={LoginModal}   />   
-                   <Route path="/register" component={RegisterModal}   />   
-                   <Route path="/authenticate" component={Authenticate}   /> 
                    <Route path="/admin" component={AdminCheck}   />  
+
 
             {/* Pages not listed on Menu */}
             <Route path="/forgotPassword" component={ForgotPassModal} />
@@ -86,13 +70,10 @@ const App = () => {
           belowSection={"section-b-space light-layout"}
           newLatter={false}
           logoName={"logo/f5.png"}
-          leftFooter={landingPageData && landingPageData.footer ? landingPageData.footer.leftFooter:null}
-          rightFooter={landingPageData && landingPageData.footer ?landingPageData.footer.rightFooter:null} 
-          
-          />
-    </div>
-      </Router>
-  )
-}
+        />
+      </div>
+    </Router>
+  );
+};
 
 export default App;
