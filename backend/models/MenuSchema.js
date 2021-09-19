@@ -25,7 +25,11 @@ const MenuSchema = new mongoose.Schema(
             type: String
             // data: Buffer, 
             // contentType: String
-        }
+        },
+        countInStock: {
+          type: Number,
+          required: true,
+        },
     }
 );
 

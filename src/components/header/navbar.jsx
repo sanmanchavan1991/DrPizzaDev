@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 //import Link from "next/link";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { MENUITEMS } from "../constant/menu";
 import { Container, Row } from "reactstrap";
 import { useRouter } from "next/router";
+import { connect } from 'react-redux';
 
-const NavBar = () => {
+const NavBar = (cartItems) => {
   const [navClose, setNavClose] = useState({ right: "-410px" });
   const router = useRouter();
-
+  console.log('Hello WOrld==>',cartItems.cartItems)   
+  const getCartCount = () => {
+    return cartItems.cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
+    //return 0;
+  };
   useEffect(() => {
     if (window.innerWidth < 750) {
       setNavClose({ right: "-410px" });
@@ -26,7 +31,6 @@ const NavBar = () => {
   const closeNav = () => {
     setNavClose({ right: "-410px" });
   };
- 
 
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
 
@@ -63,7 +67,6 @@ const NavBar = () => {
     setMainMenu({ mainmenu: MENUITEMS });
   };
 
-
   return (
     <div>
       <div className="main-navbar">
@@ -87,17 +90,29 @@ const NavBar = () => {
                 >
                   <Link className="nav-link" to={menuItem.path}>
                     {" "}
-                    {(menuItem.title)}
+                    {menuItem.title}
                   </Link>
-                  
                 </li>
               );
             })}
+
+            <li>
+              <Link to="/cart" className="cart__link">
+                <i className="fa fa-shopping-cart"></i>
+                <span>
+                  Cart <span className="cartlogo__badge">{getCartCount()}</span>
+                </span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   );
 };
+const mapStateToProps = (state) => ({
+  cartItems: state.cart.cartItems
+});
 
-export default NavBar;
+export default connect(mapStateToProps, {  })(NavBar);
+//export default ;

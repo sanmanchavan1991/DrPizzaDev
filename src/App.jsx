@@ -22,6 +22,9 @@ import RegisterModal from "./components/auth/RegisterModal";
 import LoginModal from "./components/auth/LoginModal";
 import resetPassword from "./components/auth/resetPassword";
 import ForgotPassModal from "./components/auth/forgotPassword";
+
+import ProductScreen from "./components/Menu/ProductScreen";
+import CartScreen from "./components/cart/CartScreen";
 import store from "./store";
 
 const App = () => {
@@ -31,11 +34,12 @@ const App = () => {
   return (
     <Router>
       {error ? <PageNotFound /> : null}
-      <div>
+      <div> 
+        <Provider store={store}>
         <header>
           <Navigation />
         </header>
-        <Provider store={store}>
+       
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/gallery" component={Gallery} />
@@ -50,8 +54,8 @@ const App = () => {
             {/* Pages not listed on Menu */}
             <Route path="/forgotPassword" component={ForgotPassModal} />
             <Route path="/resetPassword/:token" component={resetPassword} />
-
-
+            <Route path="/menu/:id" component={ProductScreen} />
+            <Route path="/cart" component={CartScreen} />
             <Route component={Error} />
           </Switch>
         </Provider>

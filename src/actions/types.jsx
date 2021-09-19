@@ -25,9 +25,20 @@ export const Images_LOADING = 'Images_LOADING';
 export const Images_LOADED = 'Images_LOADED';
 
 //Menus
-export const GET_MENUS = 'GET_MENUS';
-export const MENUS_LOADING = 'MENUS_LOADING';
-export const MENUS_LOADED = 'MENUS_LOADED';
+export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
+export const GET_PRODUCTS_REQUEST  = 'GET_PRODUCTS_REQUEST ';
+export const GET_PRODUCTS_FAIL = 'GET_PRODUCTS_FAIL';
+export const GET_PRODUCT_DETAILS_REQUEST  = 'GET_PRODUCT_DETAILS_REQUEST ';
+export const GET_PRODUCT_DETAILS_SUCCESS  = 'GET_PRODUCT_DETAILS_SUCCESS ';
+export const GET_PRODUCT_DETAILS_FAIL = 'GET_PRODUCT_DETAILS_FAIL';
+export const GET_PRODUCT_DETAILS_RESET  = 'GET_PRODUCT_DETAILS_RESET ';
+
+
+//cart
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const CART_RESET = "CART_RESET";
+export const CART_FAIL = "CART_FAIL";
 
 //forgot and Reset Password
 

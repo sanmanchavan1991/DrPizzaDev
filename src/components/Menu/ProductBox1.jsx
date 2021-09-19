@@ -99,24 +99,7 @@ const ProductItem = ({
                       alt=""
                       className="img-fluid"
                     />
-                    <div className="media-body align-self-center text-center">
-                      <h5>
-                        <i className="fa fa-check"></i>Item{" "}
-                        <span>{product.title}</span>
-                        <span>successfully added to your Compare list</span>
-                      </h5>
-                      <div className="buttons d-flex justify-content-center">
-                        <Link href="/page/compare">
-                          <a
-                            href={null}
-                            className="btn-sm btn-solid"
-                            //onClick={addCompare}
-                          >
-                            View Compare list
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
+                    
                   </div>
                 </Col>
               </Row>

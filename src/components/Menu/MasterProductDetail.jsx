@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MasterProductDetail = ({
   product,
@@ -10,11 +11,8 @@ const MasterProductDetail = ({
   des,
   variantChangeByColor,
 }) => {
-  let RatingStars = [];
-  let rating = 5;
-  for (var i = 0; i < rating; i++) {
-    RatingStars.push(<i className="fa fa-star" key={i}></i>);
-  }
+  const [qty, setQty] = useState(1);
+
 
   return (
     <div className={`product-detail ${productDetail} ${detailClass}`}>
@@ -31,6 +29,11 @@ const MasterProductDetail = ({
           ).toFixed(2)}
 
         </h4>
+        <h6>
+        <Link to={`/menu/${product._id}`} className="info__button">
+          View
+        </Link>
+        </h6>
 
 
       </div>
