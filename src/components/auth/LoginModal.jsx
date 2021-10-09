@@ -19,13 +19,14 @@ import { connect } from "react-redux";
 import { login } from "../../actions/authAction";
 import { clearErrors } from "../../actions/errorActions";
 import CommonLayout from "../layout/CommonLayout";
+import { useHistory } from "react-router-dom";
 
-const LoginModal = ({ isAuthenticated, error, register, clearErrors }) => {
+const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState(null);
-
+  const history = useHistory();
   const clearInput = () => {
     setEmail("");
     setPassword("");
@@ -39,7 +40,12 @@ const LoginModal = ({ isAuthenticated, error, register, clearErrors }) => {
     // Check for register error
     if (error.id === "LOGIN_FAIL") {
       setMsg(error.msg.msg);
-    } else {
+    }
+    else if(error.id === "LOGIN_SUCCESS")
+    {
+      setMsg('Login Successful!');
+    } 
+    else {
       setMsg(null);
     }
 
@@ -62,22 +68,28 @@ const LoginModal = ({ isAuthenticated, error, register, clearErrors }) => {
     // Attempt to login
     login(user);
   };
-
+  const handleClickForgotPass = () => {
+    history.push("/forgotPassword");
+  };
+  const handleOnRegister = () => {
+    history.push("/register");
+  };
+  console.log("isAdmin==>", isAdmin);
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col"></div>
-      {/* <CommonLayout parent="home" title="Register">
+   <div>
+     <CommonLayout parent="home" title="Login">
         <section className="contact-page section-b-space">
           <Container>
             <Row className="section-b-space">
-              <Col lg="5"> */}
-              <div className="col">
-                {msg ? <Alert color="danger">{msg}</Alert> : null}
-                <Form className="theme-form" >
+              <Col lg="7" className="login-page-left"></Col>
+              <Col lg="1"></Col>
+              <Col lg="4" className="login-box">
+                {msg ? <span>{msg}</span> : null}
+
+                <Form className="theme-form">
                   <FormGroup>
                     <Row>
-                      <Col md="6">
+                      <Col md="6" sm>
                         <Label for="email">Email</Label>
                         <Input
                           type="email"
@@ -103,29 +115,52 @@ const LoginModal = ({ isAuthenticated, error, register, clearErrors }) => {
                           required
                         />
                       </Col>
-
-                      <Col md="12">
-                        <button className="btn btn-solid" type="submit"  onClick={handleOnSubmit}>
+                    </Row> <Row>
+                      <Col md="3"></Col>
+                      <Col md="5">
+                        <a
+                          style={{ textDecoration: "none" }}
+                          onClick={handleClickForgotPass}
+                        >
+                          Forgot password?
+                        </a>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="2">
+                        <button
+                          className="btn btn-solid"
+                          type="submit"
+                          onClick={handleOnSubmit}
+                        >
                           Login
+                        </button>
+                      </Col>
+                      <Col md="1"></Col>
+                      <Col md="4">
+                        <button
+                          className="btn btn-solid"
+                          type="submit"
+                          onClick={handleOnRegister}
+                        >
+                          Sign Up
                         </button>
                       </Col>
                     </Row>
                   </FormGroup>
                 </Form>
-                </div>
-              {/* </Col>
+              </Col>
             </Row>
           </Container>
         </section>
-      </CommonLayout> */}
-      <div className="col"></div>
-      </div>
-    </div>
+      </CommonLayout>
+   </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  isAdmin: state.auth.user.isAdmin,
   error: state.error,
 });
 

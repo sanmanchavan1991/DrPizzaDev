@@ -6,7 +6,7 @@ const router = express.Router();
 
 /**
  * @route   GET routes/menu/menusList
- * @desc    Get all gallery images data
+ * @desc    Get all menus data
  * @access  Public
  */
 
@@ -14,6 +14,22 @@ router.get("/menusList", async (req, res) => {
   try {
     const menus = await MenuSchema.find();
     if (!menus) throw Error("menus list not exist");
+    res.json(menus);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+});
+
+/**
+ * @route   GET routes/menu/:Id
+ * @desc    Get a menu data
+ * @access  Public
+ */
+
+ router.get("/:Id", async (req, res) => {
+  try {
+    const menus = await MenuSchema.findById(req.params.Id);
+    if (!menus) throw Error("menu with mentioned Id does not exist");
     res.json(menus);
   } catch (e) {
     res.status(400).json({ msg: e.message });

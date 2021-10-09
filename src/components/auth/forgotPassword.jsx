@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 
 import { connect } from "react-redux";
-import { forgotPassword } from "../../actions/authAction";
+import { forgotPassword } from "../../actions/forgotPassAction";
 import { clearErrors } from "../../actions/errorActions";
 import CommonLayout from "../layout/CommonLayout";
 //import { useHistory } from "react-router-dom";
