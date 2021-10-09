@@ -14,7 +14,12 @@ router.get("/images", async (req, res) => {
   try {
     const images = await GallerySchema.find();
     if (!images) throw Error("images not exist");
-    res.json(images);
+    
+    res.status(200).json({
+     images: images
+      , msg: 'success' 
+
+    });
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }

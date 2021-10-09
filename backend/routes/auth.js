@@ -38,8 +38,10 @@ const router = express.Router();
       user: {
         id: user._id,
         name: user.username,
-        email: user.email
-      }
+        email: user.email,
+        isAdmin:user.isAdmin
+      },
+      msg: 'success' 
     });
   } catch (e) {
     res.status(400).json({ msg: e.message });
@@ -94,6 +96,8 @@ const router = express.Router();
         username: savedUser.username,
         email: savedUser.email
       }
+      , msg: 'success' 
+
     });
   } catch (e) {
     res.status(400).json({ msg: e.message });
@@ -106,11 +110,17 @@ const router = express.Router();
  * @access  Private
  */
 
-router.get('/user', auth, async (req, res) => {
+router.get('/user',  async (req, res) => {
   try {
     const user = await UserSchema.findById(req.user.id).select('-password');
     if (!user) throw Error('User does not exist');
-    res.json(user);
+
+    res.status(200).json({
+     user: user
+      , msg: 'success' 
+
+    });
+    
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
