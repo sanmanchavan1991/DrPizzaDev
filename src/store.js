@@ -2,15 +2,23 @@ import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
+const cartItemsInLocalStorage = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
 
+const INITIAL_STATE = {
+  cart: {
+    cartItems: cartItemsInLocalStorage,
+  },
+};
 
-const initalState={}
+//const initalState={}
 const middleWare=[thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store=createStore(
     rootReducer,
-    initalState,
+    INITIAL_STATE,
     composeEnhancers(applyMiddleware(...middleWare))
 
 )
