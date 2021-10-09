@@ -2,29 +2,30 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import AdminPage from './Admin';
 import LoginModal from '../auth/LoginModal';
+import { connect } from "react-redux";
+import { login } from "../../actions/authAction";
+import { clearErrors } from "../../actions/errorActions";
 
-const AdminCheck = () => {
+const AdminCheck = ({isAuthenticated, userAdmin, error, login, clearErrors }) => {
     const [checkIfAdminHasLoggedIn, setCheckIfAdminHasLoggedIn] = useState(false);
     useEffect(() => {
-        axios.get('http://localhost:3000/user-admin').then(res => {
-            // console.log(res.data)
-            // res.data.map(user => {
-            //     if(user.isAdmin) {
-            //         setCheckIfAdminHasLoggedIn(true);
-            //     }
-            //     else {
-            //         setCheckIfAdminHasLoggedIn(false);
-            //     }
-            // })
-        }).catch(err => console.log(err, "this is related to the admin check user!"))
-    })
+        if(userAdmin && userAdmin.isAdmin) {
+            setCheckIfAdminHasLoggedIn(true);
+        }
+    }, [checkIfAdminHasLoggedIn, userAdmin])
     return (
         <>
             {
-                checkIfAdminHasLoggedIn ? <AdminPage /> : <AdminPage />
+                checkIfAdminHasLoggedIn ? <AdminPage /> : <LoginModal/>
             }
         </>
     )
 }
 
-export default AdminCheck;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    userAdmin: state.auth.user,
+    error: state.error,
+});
+  
+export default connect(mapStateToProps, { login, clearErrors })(AdminCheck);

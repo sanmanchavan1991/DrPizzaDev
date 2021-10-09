@@ -71,13 +71,13 @@ useEffect(() => {if (menu && match.params.id !== menu._id) {
               <p>
                 Status:
                 <span>
-                   {menu.countInStock > 0 ? "In Stock" : "Out of Stock"} 
+                   {menu.stockQuantity > 0 ? "In Stock" : "Out of Stock"} 
                 </span>
               </p>
               <p>
                 Qty
                  <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                  {[...Array(menu.countInStock).keys()].map((x) => (
+                  {[...Array(menu.stockQuantity).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
                     </option>

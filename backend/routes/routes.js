@@ -101,11 +101,12 @@ router.post('/signup', async (req, res) => {
       try {
         const newMenuItem = new Menu({
           foodName: req.body.foodName, 
-        foodDesc: req.body.foodDesc,
-        foodPrice: req.body.foodPrice,
-        foodSize: req.body.foodSize, 
-        foodType: req.body.foodType,
-        foodImage: req.file.filename
+          foodDesc: req.body.foodDesc,
+          foodPrice: req.body.foodPrice,
+          foodSize: req.body.foodSize, 
+          foodType: req.body.foodType,
+          foodImage: req.file.filename,
+          stockQuantity: req.body.stockQuantity,
         })
         await newMenuItem.save().then(() => res.send({response: 'ok'})).catch(err=> console.log("notsaved", err));
       }
@@ -118,4 +119,16 @@ router.post('/signup', async (req, res) => {
       console.log("<<<<<<<<<<<<<<<WAITING>>>>>>>>>>>>>")
     }
   });
+
+  router.get('/admin-user', (req, res) => {
+    User.findOne({ isAdmin: true }, function (err, result) {
+      if(err) {
+        res.status(422).send({error: 'Admin user not found!'});
+      }
+      else {
+        res.send(result);
+      }
+    });
+  });
+
 module.exports = router;

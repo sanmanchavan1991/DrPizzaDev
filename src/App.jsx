@@ -21,11 +21,11 @@ import PageNotFound from "./components/error/pageNotFound";
 import RegisterModal from "./components/auth/RegisterModal";
 import LoginModal from "./components/auth/LoginModal";
 import resetPassword from "./components/auth/resetPassword";
-import ForgotPassModal from "./components/auth/forgotPassword";
 
 import ProductScreen from "./components/Menu/ProductScreen";
 import CartScreen from "./components/cart/CartScreen";
 import AdminCheck from './components/admin/AdminCheck';
+import ForgotPassModal from './components/auth/forgotPassword'
 
 import store from "./store";
 
@@ -59,6 +59,7 @@ const App = () => {
             <Route path="/resetPassword/:token" component={resetPassword} />
             <Route path="/menu/:id" component={ProductScreen} />
             <Route path="/cart" component={CartScreen} />
+
             <Route component={Error} />
           </Switch>
         </Provider>

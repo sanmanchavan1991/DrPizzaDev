@@ -87,7 +87,7 @@ export const loadUser = () => (dispatch, getState) => {
   
     axios
       .post(staticRoute+'/routes/auth/login', body, config)
-      .then(res =>
+      .then(res => 
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data

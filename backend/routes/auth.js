@@ -39,9 +39,9 @@ const router = express.Router();
         id: user._id,
         name: user.username,
         email: user.email,
-        isAdmin:user.isAdmin
+        isAdmin: user.isAdmin
       },
-      msg: 'success' 
+      msg: 'success'
     });
   } catch (e) {
     res.status(400).json({ msg: e.message });

@@ -11,6 +11,7 @@ const AdminPage = () => {
     const [foodSize, setFoodSize] = useState();
     const [foodType, setFoodType] = useState();
     const [foodImage, setFoodImage] = useState();
+    const [stockQuantity, setStockQuantity] = useState();
     const [checkIfDataIsSaved, setCheckIfDataIsSaved] = useState();
 
     const handleClick = () => {
@@ -20,14 +21,15 @@ const AdminPage = () => {
         foodFormData.append('foodPrice', foodPrice);
         foodFormData.append('foodSize', foodSize);
         foodFormData.append('foodType', foodType);
-        foodFormData.append('image', foodImage)
-
+        foodFormData.append('image', foodImage);
+        foodFormData.append('stockQuantity', stockQuantity);
+        console.log(foodImage)
+        console.log('ffd', foodFormData);
         axios.post('http://localhost:3000/menu', foodFormData, {
             headers: {
               'Content-Type': 'applicatiom/json',
             },
           }).then((res) => {
-              console.log(res)
             if (res.status === 200) {
                 setCheckIfDataIsSaved(true);
             }
@@ -38,9 +40,9 @@ const AdminPage = () => {
     }
     return (
         <div className="container" style={{padding: "50px"}}>
-            <Router>
+            {/* <Router>
                 <Route path="Inventory" component={Inventory}/>
-            </Router>
+            </Router> */}
             <div className="row">
                 <div className="col"></div>
                 <div className="col" >
@@ -62,6 +64,9 @@ const AdminPage = () => {
 
                     <label htmlFor="exampleInputEmail1">Enter Food Type</label>
                     <input type="text" style={{marginBottom: "20px"}} className="form-control form-control-lg" id="exampleInputEmail5" placeholder="Food Type" onChange={(e) => setFoodType(e.target.value)} />
+
+                    <label htmlFor="exampleInputEmail1">Enter Stock Quantity</label>
+                    <input type="text" style={{marginBottom: "20px"}} className="form-control form-control-lg" id="exampleInputEmail6" placeholder="Stock Quantity" onChange={(e) => setStockQuantity(e.target.value)} />
 
                     <label htmlFor="image">Add Food Image</label>
                     <input type="file" style={{marginBottom: "20px"}} className="form-control-file form-control-lg" id="image" encType="multipart/form-data" name="image" onChange={(e) => setFoodImage(e.target.files[0])} />

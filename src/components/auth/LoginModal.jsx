@@ -160,7 +160,6 @@ const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  isAdmin: state.auth.user.isAdmin,
   error: state.error,
 });
 
