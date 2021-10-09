@@ -214,7 +214,7 @@ const GridTwoPage = ({ getItems,images ,isLoading,colClass, limit }) => {
 
 //export default GridTwoPage;
 const mapStateToProps = (state) => ({
-  images: state.gallery.images,
+  images: state.gallery.images.images,
   isLoading: state.gallery.isLoading
 });
 
