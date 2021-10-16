@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ThemeSettings from "./components/WebSiteTheme/theme-settings";
 import "./assets/scss/app.scss";
-import { Navigation } from "./components/navigation";
+import { Navigation } from "./components/Navigation/navigation";
 import { Menus } from "./components/Menu/menus";
 import { Home } from "./components/Home/home";
 import { Provider } from "react-redux";
