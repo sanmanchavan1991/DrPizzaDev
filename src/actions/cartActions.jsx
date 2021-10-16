@@ -104,7 +104,7 @@ export const paymentConfirmation = (id, qty) => async (dispatch, getState) => {
   const { data } =await axios.get(staticRoute+`/routes/menu/${id}`);
 
   dispatch({
-    type: actionTypes.PAYMENT_CONFIRM_SUCCESS,
+    type: actionTypes.PAYMENT_SUCCESS,
     payload: {
       product: data._id,
       name: data.foodName,
@@ -118,7 +118,7 @@ export const paymentConfirmation = (id, qty) => async (dispatch, getState) => {
 } 
   catch (error) {
     dispatch({
-      type: actionTypes.PAYMENT_CONFIRM_FAIL,
+      type: actionTypes.PAYMENT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
