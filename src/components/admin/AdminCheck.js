@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import AdminPage from './Admin';
-import LoginModal from '../auth/LoginModal';
+import LoginModal from '../Auth/LoginModal';
 import { connect } from "react-redux";
 import { login } from "../../actions/authAction";
 import { clearErrors } from "../../actions/errorActions";
