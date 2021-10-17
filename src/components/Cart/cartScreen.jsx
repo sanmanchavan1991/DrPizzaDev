@@ -4,13 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-<<<<<<< HEAD:src/components/cart/CartScreen.jsx
-import { Row, Container } from "reactstrap";
-import CommonLayout from "../layout/CommonLayout";
-=======
 import { Row, Container } from 'reactstrap';
 import CommonLayout from '../layout/commonLayout';
->>>>>>> cleanBranch:src/components/Cart/cartScreen.jsx
 // Components
 import CartItem from "./cartItem";
 
