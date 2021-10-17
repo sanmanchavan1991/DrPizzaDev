@@ -19,7 +19,7 @@ import {
 import { connect } from "react-redux";
 import { resetPassword } from "../../actions/resetPassAction";
 import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/CommonLayout";
+import CommonLayout from "../Layout/CommonLayout";
 import { useHistory,useParams } from "react-router-dom";
 
 const ResetPassword = ({  error, resetPassword, clearErrors }) => {

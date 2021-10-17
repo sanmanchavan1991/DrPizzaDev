@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from "react";
 import { Container, Row, Col, Media, Form, Label, Input } from "reactstrap";
-import CommonLayout from "../layout/CommonLayout";
+import CommonLayout from "../Layout/CommonLayout";
 import emailjs from 'emailjs-com';
 import swal from 'sweetalert';
 

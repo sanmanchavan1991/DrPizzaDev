@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import CommonLayout from '../layout/CommonLayout';
+import CommonLayout from '../Layout/CommonLayout';
 
 const Error = () => {
     return (

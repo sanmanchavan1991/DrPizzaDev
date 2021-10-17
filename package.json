@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start webpack serve --mode development --open",
-    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build"
+    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "scss": "node-sass --watch scss -o css"
   },
   "author": "",
   "license": "ISC",

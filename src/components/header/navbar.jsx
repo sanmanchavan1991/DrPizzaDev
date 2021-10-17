@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 //import Link from "next/link";
 import { Link } from "react-router-dom";
-
+import './navbar.css';
 import { MENUITEMS } from "../MenuBar/menuList";
 import { Container, Row } from "reactstrap";
 import { useRouter } from "next/router";
@@ -68,8 +68,8 @@ const NavBar = (cartItems) => {
   };
 
   return (
-    <div>
-      <div className="main-navbar">
+    <div className="main-theme" style={{backgroundColor: '#1D1C1C'}}>
+      <div className="main-navbar theme">
         <div id="mainnav">
           <div className="toggle-nav" onClick={openNav.bind(this)}>
             <i className="fa fa-bars sidebar-bar"></i>

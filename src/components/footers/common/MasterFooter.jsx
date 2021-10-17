@@ -11,7 +11,7 @@ import {
   Collapse,
 } from "reactstrap";
 import CopyRight from "./copyright";
-import LogoImage from "../../header/logo";
+import LogoImage from "../../Header/logo";
 
 const MasterFooter = ({
   containerFluid,

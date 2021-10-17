@@ -1,0 +1,13 @@
+body {
+    @font-face {
+        font-family: 'Poppins-Regular';
+        src: url(../../assets/fonts/Poppins-Regular.ttf);
+    }
+}
+
+.main-theme {
+    @font-face {
+        font-family: 'Poppins-Regular';
+        url: url(../../assets/fonts/Poppins-Regular.ttf);
+    }
+}

@@ -18,7 +18,7 @@ import {
 import { connect } from "react-redux";
 import { register } from "../../actions/authAction";
 import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/CommonLayout";
+import CommonLayout from "../Layout/CommonLayout";
 import { useHistory } from "react-router-dom";
 
 const RegisterModal = ({ isAuthenticated, error, register, clearErrors }) => {

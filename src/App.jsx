@@ -13,7 +13,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import MasterFooterTwo from "./components/footers/common/MasterFooterTwo";
+import MasterFooterTwo from "./components/Footers/common/MasterFooterTwo";
 import Contact from "./components/Contact-Us/contact";
 import Error from "./components/Error/error";
 import PageNotFound from "./components/Error/pageNotFound";
