@@ -20,20 +20,20 @@ import { connect } from "react-redux";
 import { resetPassword } from "../../actions/resetPassAction";
 import { clearErrors } from "../../actions/errorActions";
 import CommonLayout from "../layout/CommonLayout";
-import { useHistory,useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-const ResetPassword = ({  error, resetPassword, clearErrors }) => {
+const ResetPassword = ({ error, resetPassword, clearErrors }) => {
   const [modal, setModal] = useState(false);
-  
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   //const [password, setPassword] = useState("");
   const [msg, setMsg] = useState(null);
-  
+
   //const history = useHistory();
   let { token } = useParams();
 
-  console.log("token==>",token);
+  console.log("token==>", token);
   const handleToggle = useCallback(() => {
     // Clear errors
     clearErrors();
@@ -53,7 +53,7 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
     //     handleToggle();
     //   }
     // }
-  }, [error, handleToggle,  modal]);
+  }, [error, handleToggle, modal]);
 
   const handleChangePassword = (e) => setPassword(e.target.value);
   const handleChangeConfirmPassword = (e) => setConfirmPassword(e.target.value);
@@ -62,18 +62,18 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log("saaaa");
-    const user = {token, password };  
-    console.log("sanman this.token==>",token);
+    const user = { token, password };
+    console.log("sanman this.token==>", token);
 
     // Attempt to login
     resetPassword(user);
   };
-//   const handleClickForgotPass = () => {
-//     history.push("/forgotPassword");
-//   };
-//   const handleOnRegister = () => {
-//     history.push("/register");
-//   };
+  //   const handleClickForgotPass = () => {
+  //     history.push("/forgotPassword");
+  //   };
+  //   const handleOnRegister = () => {
+  //     history.push("/register");
+  //   };
   console.log("msg==>", msg);
 
   return (
@@ -90,8 +90,8 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
                 <Form className="theme-form">
                   <FormGroup>
                     <Row>
-                      <Col md="6" >
-                      <Label for="password">Password</Label>
+                      <Col md="6">
+                        <Label for="password">Password</Label>
                         <Input
                           type="password"
                           onChange={handleChangePassword}
@@ -102,10 +102,10 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
                           required
                         />
                       </Col>
-                      </Row>
-                      <Row>
-                      <Col md="6" >
-                      <Label for="password">Re-Enter Password</Label>
+                    </Row>
+                    <Row>
+                      <Col md="6">
+                        <Label for="password">Re-Enter Password</Label>
                         <Input
                           type="password"
                           onChange={handleChangeConfirmPassword}
@@ -117,9 +117,7 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
                         />
                       </Col>
                     </Row>
-                   
 
-                   
                     <Row>
                       <Col md="8">
                         <button
@@ -130,7 +128,6 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
                           Reset-Password
                         </button>
                       </Col>
-                      
                     </Row>
                   </FormGroup>
                 </Form>
@@ -145,7 +142,9 @@ const ResetPassword = ({  error, resetPassword, clearErrors }) => {
 
 const mapStateToProps = (state) => ({
   error: state.error,
- // token:state.auth.token
+  // token:state.auth.token
 });
 
-export default connect(mapStateToProps, { resetPassword, clearErrors })(ResetPassword);
+export default connect(mapStateToProps, { resetPassword, clearErrors })(
+  ResetPassword
+);

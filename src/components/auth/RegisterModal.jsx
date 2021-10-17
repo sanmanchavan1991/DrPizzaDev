@@ -67,24 +67,23 @@ const RegisterModal = ({ isAuthenticated, error, register, clearErrors }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    let isError=false;
+    let isError = false;
     if (password !== confirmPassword) {
-      setMsg('confrim pass and pass is not matching');
-      isError=true;
+      setMsg("confrim pass and pass is not matching");
+      isError = true;
     }
-    if(isError===false)
-    {
-    // Create user object
-    const user = {
-      fullName,
-      phoneNumber,
-      email,
-      password,
-    };
-    console.log(user);
-    // Attempt to login
-    register(user);
-  }
+    if (isError === false) {
+      // Create user object
+      const user = {
+        fullName,
+        phoneNumber,
+        email,
+        password,
+      };
+      console.log(user);
+      // Attempt to login
+      register(user);
+    }
   };
   const handleLoginRedirect = () => {
     history.push("/login");

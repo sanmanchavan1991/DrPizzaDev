@@ -21,7 +21,13 @@ import { clearErrors } from "../../actions/errorActions";
 import CommonLayout from "../layout/CommonLayout";
 import { useHistory } from "react-router-dom";
 
-const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
+const LoginModal = ({
+  isAuthenticated,
+  isAdmin,
+  error,
+  login,
+  clearErrors,
+}) => {
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,12 +46,9 @@ const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
     // Check for register error
     if (error.id === "LOGIN_FAIL") {
       setMsg(error.msg.msg);
-    }
-    else if(error.id === "LOGIN_SUCCESS")
-    {
-      setMsg('Login Successful!');
-    } 
-    else {
+    } else if (error.id === "LOGIN_SUCCESS") {
+      setMsg("Login Successful!");
+    } else {
       setMsg(null);
     }
 
@@ -76,8 +79,8 @@ const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
   };
   console.log("isAdmin==>", isAdmin);
   return (
-   <div>
-     <CommonLayout parent="home" title="Login">
+    <div>
+      <CommonLayout parent="home" title="Login">
         <section className="contact-page section-b-space">
           <Container>
             <Row className="section-b-space">
@@ -115,7 +118,8 @@ const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
                           required
                         />
                       </Col>
-                    </Row> <Row>
+                    </Row>{" "}
+                    <Row>
                       <Col md="3"></Col>
                       <Col md="5">
                         <a
@@ -154,7 +158,7 @@ const LoginModal = ({ isAuthenticated,isAdmin, error, login, clearErrors }) => {
           </Container>
         </section>
       </CommonLayout>
-   </div>
+    </div>
   );
 };
 

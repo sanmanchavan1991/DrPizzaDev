@@ -22,14 +22,13 @@ import { clearErrors } from "../../actions/errorActions";
 import CommonLayout from "../layout/CommonLayout";
 //import { useHistory } from "react-router-dom";
 
-const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
+const ForgotPassModal = ({ error, forgotPassword, clearErrors }) => {
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
   //const [password, setPassword] = useState("");
   const [msg, setMsg] = useState(null);
-  
-  //const history = useHistory();
 
+  //const history = useHistory();
 
   const handleToggle = useCallback(() => {
     // Clear errors
@@ -50,7 +49,7 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
     //     handleToggle();
     //   }
     // }
-  }, [error, handleToggle,  modal]);
+  }, [error, handleToggle, modal]);
 
   const handleChangeEmail = (e) => setEmail(e.target.value);
   // const handleChangePassword = (e) => setPassword(e.target.value);
@@ -63,12 +62,12 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
     // Attempt to login
     forgotPassword(user);
   };
-//   const handleClickForgotPass = () => {
-//     history.push("/forgotPassword");
-//   };
-//   const handleOnRegister = () => {
-//     history.push("/register");
-//   };
+  //   const handleClickForgotPass = () => {
+  //     history.push("/forgotPassword");
+  //   };
+  //   const handleOnRegister = () => {
+  //     history.push("/register");
+  //   };
   //console.log("msg==>", msg);
 
   return (
@@ -99,9 +98,7 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
                         />
                       </Col>
                     </Row>
-                   
 
-                   
                     <Row>
                       <Col md="2">
                         <button
@@ -112,7 +109,6 @@ const ForgotPassModal = ({  error, forgotPassword, clearErrors }) => {
                           Send Reset-Link
                         </button>
                       </Col>
-                      
                     </Row>
                   </FormGroup>
                 </Form>
@@ -129,4 +125,6 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { forgotPassword, clearErrors })(ForgotPassModal);
+export default connect(mapStateToProps, { forgotPassword, clearErrors })(
+  ForgotPassModal
+);
