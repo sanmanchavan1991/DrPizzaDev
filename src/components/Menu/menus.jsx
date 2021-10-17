@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Container } from "reactstrap";
-import CommonLayout from "../Layout/commonLayout";
+import CommonLayout from "../layout/commonLayout";
 import ProductList from "./producttlist";
 
 export const Menus = (props) => {

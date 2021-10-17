@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Col, Row, Media, Button, Spinner } from "reactstrap";
 import Menu2 from "../../../src/assets/images/mega-menu/22.jpg";
-import { CurrencyContext } from "../Currency/currencyContext";
-import ProductItem from "./productBox1";
+import { CurrencyContext } from "../Currency/CurrencyContext";
+import ProductItem from "./ProductBox1";
 import { getMenus} from '../../actions/menuAction';
 import { connect } from 'react-redux';
 

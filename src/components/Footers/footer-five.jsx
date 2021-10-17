@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import CopyRight from "./Common/copyright";
+import CopyRight from "./common/copyright";
 import { Container, Col, Row, Collapse } from "reactstrap";
 import LogoImage from "../header/logo";
 

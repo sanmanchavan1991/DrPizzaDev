@@ -1,4 +1,4 @@
-import "./cartItem.css";
+import "./CartItem.css";
 import { Link } from "react-router-dom";
 
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
