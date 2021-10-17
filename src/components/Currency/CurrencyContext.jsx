@@ -29,4 +29,4 @@ export const Provider = (props) => {
 export {
   Context as CurrencyContext,
   Provider as CurrencyContextProvider,
-} from "./currencyContext";
+} from "./CurrencyContext";

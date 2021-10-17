@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import { Row, Container } from 'reactstrap';
-import CommonLayout from '../Layout/commonLayout';
+import CommonLayout from '../layout/commonLayout';
 // Components
 import CartItem from "./cartItem";
 
