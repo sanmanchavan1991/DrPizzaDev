@@ -1,6 +1,6 @@
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
-import rootReducer from './Reducers'
+import rootReducer from './reducers'
 
 const cartItemsInLocalStorage = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
