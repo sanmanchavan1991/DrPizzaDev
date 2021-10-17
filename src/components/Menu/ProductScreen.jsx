@@ -1,10 +1,10 @@
-import "./ProductScreen.css";
+import "./productScreen.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from 'react-redux';
 
 // Actions
-import { getMenuDetails} from '../../actions/MenuAction';
+import { getMenuDetails} from '../../actions/menuAction';
 // import { getProductDetails } from "../redux/actions/productActions";
  import { addToCart } from "../../actions/cartActions";
 

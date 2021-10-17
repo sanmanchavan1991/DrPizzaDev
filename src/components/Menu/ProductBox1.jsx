@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Row, Col, Media, Modal, ModalBody } from "reactstrap";
-import MasterProductDetail from "./MasterProductDetail";
+import MasterProductDetail from "./masterProductDetail";
 
 
 const ProductItem = ({

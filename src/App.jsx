@@ -13,17 +13,17 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import MasterFooterTwo from "./components/Footers/common/MasterFooterTwo";
+import MasterFooterTwo from "./components/Footers/Common/masterFooterTwo";
 import Contact from "./components/Contact-Us/contact";
 import Error from "./components/Error/error";
 import PageNotFound from "./components/Error/pageNotFound";
-import RegisterModal from "./components/Auth/RegisterModal";
-import LoginModal from "./components/Auth/LoginModal";
+import RegisterModal from "./components/Auth/registerModal";
+import LoginModal from "./components/Auth/loginModal";
 import resetPassword from "./components/Auth/resetPassword";
 
-import ProductScreen from "./components/Menu/ProductScreen";
-import CartScreen from "./components/Cart/CartScreen";
-import AdminCheck from "./components/Admin/AdminCheck";
+import ProductScreen from "./components/Menu/productScreen";
+import CartScreen from "./components/Cart/cartScreen";
+import AdminCheck from "./components/Admin/adminCheck";
 import ForgotPassModal from "./components/Auth/forgotPassword";
 
 import store from "./store";
