@@ -19,7 +19,7 @@ import {
 import { connect } from "react-redux";
 import { forgotPassword } from "../../actions/forgotPassAction";
 import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/CommonLayout";
+import CommonLayout from "../Layout/commonLayout";
 //import { useHistory } from "react-router-dom";
 
 const ForgotPassModal = ({ error, forgotPassword, clearErrors }) => {

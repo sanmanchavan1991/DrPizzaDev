@@ -1,5 +1,5 @@
 import React from "react";
-import Breadcrubs from "../Breadcrubs/Breadcrubs";
+import Breadcrubs from "../Breadcrubs/breadcrubs";
 
 const CommonLayout = ({ children, title, parent, subTitle }) => {
   return (

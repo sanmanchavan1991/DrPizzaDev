@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-//import Link from "next/link";
 import { Link } from "react-router-dom";
 
 import { MENUITEMS } from "../MenuBar/menuList";
-import { Container, Row } from "reactstrap";
 import { useRouter } from "next/router";
 import { connect } from 'react-redux';
 

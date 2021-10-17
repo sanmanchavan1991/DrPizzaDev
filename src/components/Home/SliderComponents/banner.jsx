@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Slider from "react-slick";
-import MasterBanner from "./MasterBanner";
+import MasterBanner from "./masterBanner";
 
 const Banner = (props) => {
   const sliderData = [

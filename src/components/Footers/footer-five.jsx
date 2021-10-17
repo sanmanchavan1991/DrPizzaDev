@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import CopyRight from "./common/copyright";
+import CopyRight from "./Common/copyright";
 import { Container, Col, Row, Collapse } from "reactstrap";
-//import {} from "../../services/script";
 import LogoImage from "../header/logo";
 
 const FooterFive = ({ layoutClass, logoName }) => {

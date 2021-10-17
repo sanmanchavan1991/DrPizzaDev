@@ -1,13 +1,13 @@
-import "./CartScreen.css";
+import "./cartScreen.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import { Row, Container } from 'reactstrap';
-import CommonLayout from '../layout/CommonLayout';
+import CommonLayout from '../Layout/commonLayout';
 // Components
-import CartItem from "./CartItem";
+import CartItem from "./cartItem";
 
 // Actions
 import { addToCart, removeFromCart } from "../../actions/cartActions";

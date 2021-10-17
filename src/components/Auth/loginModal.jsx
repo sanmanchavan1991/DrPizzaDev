@@ -18,7 +18,7 @@ import {
 import { connect } from "react-redux";
 import { login } from "../../actions/authAction";
 import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/CommonLayout";
+import CommonLayout from "../Layout/commonLayout";
 import { useHistory } from "react-router-dom";
 
 const LoginModal = ({

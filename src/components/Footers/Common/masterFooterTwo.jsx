@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Container, Row, Col, Collapse } from "reactstrap";
 import CopyRight from "./copyright";
 import LogoImage from "../../Header/logo";
-import contactUsFooter from "./contactUsFooter";
 import ContactUsFooter from "./contactUsFooter";
 
 const MasterFooterTwo = ({
