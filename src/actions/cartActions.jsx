@@ -53,7 +53,7 @@ console.log('JSON.stringify(getState().cart.cartItems)==>',JSON.stringify(getSta
   }
 };
 
-export const paymentConfiguration = () => async (dispatch, getState) => {
+export const paymentConfiguration = (user,payment) => async (dispatch, getState) => {
   try {
     dispatch({ type: actionTypes.PAYMENT_CONFIGURE_LOADING });
     
@@ -64,15 +64,16 @@ export const paymentConfiguration = () => async (dispatch, getState) => {
     };
   
     // Request body
-    const body = JSON.stringify({ email, password });
+    const body = JSON.stringify({  });
 
-    axios
-    .post(staticRoute+'/routes/auth/login', body, config)
+   const data= await axios
+    .post(staticRoute+'/routes/payment/razorpay', body, config)
     .then(res => 
       dispatch({
         type: actionTypes.PAYMENT_CONFIGURE_SUCCESS,
         payload: res.data
       })
+      
     )
     .catch(err => {
       dispatch(
@@ -82,6 +83,28 @@ export const paymentConfiguration = () => async (dispatch, getState) => {
         type: actionTypes.PAYMENT_CONFIGURE_FAIL
       });
     });
+    console.log('daa==>',data)
+    const options = {
+      key: "rzp_test_KcBbEcPM8ykJmM" ,
+      currency: data.payload.currency,
+      amount: data.payload.amount.toString(),
+      order_id: data.payload.id,
+      name: "Donation",
+      description: "Thank you for nothing. Please give us some money",
+      image: "http://localhost:1337/logo.svg",
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+      prefill: {
+        name:user?.username,
+        email: user?.email,
+        phone_number: user?.phone,
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
 
 } 
   catch (error) {
@@ -101,19 +124,31 @@ export const paymentConfirmation = (id, qty) => async (dispatch, getState) => {
   try {
     dispatch({ type: actionTypes.PAYMENT_LOADING });
 
-  const { data } =await axios.get(staticRoute+`/routes/menu/${id}`);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+  
+    // Request body
+    const body = JSON.stringify({ });
 
-  dispatch({
-    type: actionTypes.PAYMENT_SUCCESS,
-    payload: {
-      product: data._id,
-      name: data.foodName,
-      imageUrl: '',
-      price: data.foodPrice,
-      stockQuantity: data.stockQuantity,
-      qty,
-    },
-  }); 
+    await axios
+    .post(staticRoute+'/routes/payment/verification', body, config)
+    .then(res => 
+      dispatch({
+        type: actionTypes.PAYMENT_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, 'PAYMENT_FAIL')
+      );
+      dispatch({
+        type: actionTypes.PAYMENT_FAIL
+      });
+    });
 
 } 
   catch (error) {

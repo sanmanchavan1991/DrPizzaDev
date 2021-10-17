@@ -25,6 +25,7 @@ const AuthRoutes = require('./routes/auth');
 const GalleryRoutes = require('./routes/gallery');
 const MenuRoutes = require('./routes/menu');
 const ForgotPassRoutes = require('./routes/passwordReset');
+const PaymentRoutes = require('./routes/payment');
 app.use(express.json());
 app.use(RequireAuth);
 
@@ -45,6 +46,7 @@ app.use('/routes/auth', AuthRoutes);
 app.use('/routes/gallery', GalleryRoutes);
 app.use('/routes/menu', MenuRoutes);
 app.use('/routes/passwordReset', ForgotPassRoutes);
+app.use('/routes/payment', PaymentRoutes);
 
 
 // app.get('/', AuthRoutes, (req, res) => {

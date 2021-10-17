@@ -8,6 +8,7 @@ import { Row, Container } from 'reactstrap';
 import CommonLayout from '../layout/commonLayout';
 // Components
 import CartItem from "./cartItem";
+import {paymentConfiguration} from "../../actions/cartActions";
 
 // Actions
 import { addToCart, removeFromCart } from "../../actions/cartActions";
@@ -24,7 +25,7 @@ function loadScript(src) {
     document.body.appendChild(script);
   });
 }
-const CartScreen = (cartItems,user) => {
+const CartScreen = (props) => {
   const dispatch = useDispatch();
 
   //   const cart = useSelector((state) => state.cart);
@@ -41,11 +42,11 @@ const CartScreen = (cartItems,user) => {
   };
 
   const getCartCount = () => {
-    return cartItems.cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
+    return props.cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
   };
 
   const getCartSubTotal = () => {
-    return cartItems.cartItems
+    return props.cartItems
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
   };
@@ -59,13 +60,12 @@ const CartScreen = (cartItems,user) => {
       alert("Razorpay SDK failed to load. Are you online?");
       return;
     }
-    dispatch(addToCart(menu._id, qty));
+    props.paymentConfiguration(props.user,props.payment);
+    // const data = await fetch("http://localhost:1337/razorpay", {
+    //   method: "POST",
+    // }).then((t) => t.json());
 
-    const data = await fetch("http://localhost:1337/razorpay", {
-      method: "POST",
-    }).then((t) => t.json());
-
-    console.log(data);
+    // console.log(data);
 
     // const options = {
     //   key: "rzp_test_uGoq5ABJztRAhk" ,
@@ -98,12 +98,12 @@ const CartScreen = (cartItems,user) => {
           <Row>
             <div className="cartscreen">
               <div className="cartscreen__left">
-                {cartItems.cartItems.length === 0 ? (
+                {props.cartItems.length === 0 ? (
                   <div>
                     Your Cart Is Empty <Link to="/">Go Back</Link>
                   </div>
                 ) : (
-                  cartItems.cartItems.map((item) => (
+                  props.cartItems.map((item) => (
                     <CartItem
                       key={item.product}
                       item={item}
@@ -137,6 +137,7 @@ const CartScreen = (cartItems,user) => {
 const mapStateToProps = (state) => ({
   cartItems: state.cart.cartItems,
   user: state.auth.user,
+  payment:state.payment
 });
 
-export default connect(mapStateToProps, {})(CartScreen);
+export default connect(mapStateToProps, {paymentConfiguration})(CartScreen);
