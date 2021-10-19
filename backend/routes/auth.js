@@ -104,25 +104,37 @@ const router = express.Router();
   }
 });
 
-/**
- * @route   GET routes/auth/user
- * @desc    Get user data
- * @access  Private
- */
 
-router.get('/user',  async (req, res) => {
+
+router.post("/user", async (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(400).json({ msg: "User is not logged In" });
+  }
+
   try {
-    const user = await UserSchema.findById(req.user.id).select('-password');
-    if (!user) throw Error('User does not exist');
 
+
+    const decoded = jwt.verify(token, jwtkey);
+    if (!decoded) {
+      return res.status(400).json({ msg: "User is not logged In" });
+    }
+    console.log('Decoded value==>',decoded)
+    const user = await UserSchema.findById(decoded.id).select('-password');
     res.status(200).json({
-     user: user
-      , msg: 'success' 
-
+      token,
+      user: {
+        id: user._id,
+        name: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin
+      },
+      msg: 'success'
     });
-    
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
 });
+
 module.exports = router;

@@ -75,7 +75,6 @@ export const loadUser = () => (dispatch, getState) => {
   ) => {
     // Headers
     console.log('I am here')
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -87,6 +86,43 @@ export const loadUser = () => (dispatch, getState) => {
   
     axios
       .post(staticRoute+'/routes/auth/login', body, config)
+      .then(res => 
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data
+        })
+      )
+      .catch(err => {
+        dispatch(
+          returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+        );
+        dispatch({
+          type: LOGIN_FAIL
+        });
+      });
+  };
+  
+
+  export const IsLoggedIn = () => (
+    dispatch
+  ) => {
+    // Headers
+    console.log('I am here')
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+  
+    // Request body
+    const tokenLocalStorage = localStorage.getItem("token")
+  ? JSON.parse(localStorage.getItem("token"))
+  : '';
+    const body = JSON.stringify({ token:tokenLocalStorage });
+  
+    axios
+      .post(staticRoute+'/routes/auth/user', body, config)
       .then(res => 
         dispatch({
           type: LOGIN_SUCCESS,
@@ -130,5 +166,3 @@ export const loadUser = () => (dispatch, getState) => {
     return config;
   };
 
-
-  
