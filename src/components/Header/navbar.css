@@ -1,13 +1,32 @@
-body {
-    @font-face {
-        font-family: 'Poppins-Regular';
-        src: url(../../assets/fonts/Poppins-Regular.ttf);
-    }
+.nav-link {
+    color: #fff;
+}
+.nav-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: #1D1C1C;
+    color:#fff;
+    border-bottom: 3px solid #E2293F;
+}
+.nav > li > a:active {
+    color:#fff;
+    border-bottom: 3px solid #E2293F;
+}
+.nav-item {
+    margin: 0 20px
+}
+.logo-img-list {
+    position: relative;
+    bottom: 10;
 }
 
-.main-theme {
-    @font-face {
-        font-family: 'Poppins-Regular';
-        url: url(../../assets/fonts/Poppins-Regular.ttf);
-    }
+.signup {
+    box-shadow: 0 8px 32px 0 rgba(19, 255, 90, 0.37);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }

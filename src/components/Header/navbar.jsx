@@ -4,11 +4,12 @@ import './navbar.css';
 import { MENUITEMS } from "../MenuBar/menuList";
 import { useRouter } from "next/router";
 import { connect } from 'react-redux';
+import LogoImage from "../Header/logo";
 
 const NavBar = (cartItems) => {
   const [navClose, setNavClose] = useState({ right: "-410px" });
   const router = useRouter();
-  console.log('Hello WOrld==>',cartItems.cartItems)   
+  console.log('Hello WOrld==>', cartItems.cartItems)
   const getCartCount = () => {
     return cartItems.cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
     //return 0;
@@ -66,18 +67,21 @@ const NavBar = (cartItems) => {
   };
 
   return (
-    <div className="main-theme" style={{backgroundColor: '#1D1C1C'}}>
-      <div className="main-navbar theme">
-        <div id="mainnav">
-          <div className="toggle-nav" onClick={openNav.bind(this)}>
+    <div className="container">
+      <div className="row">
+        <div id="col">
+          {/* <div className="toggle-nav" onClick={openNav.bind(this)}>
             <i className="fa fa-bars sidebar-bar"></i>
-          </div>
-          <ul className="nav-menu" style={navClose}>
-            <li className="back-btn" onClick={closeNav.bind(this)}>
+          </div> */}
+          <ul className="nav justify-content-center nav-list" style={navClose}>
+            {/* <li className=" nav-item back-btn" onClick={closeNav.bind(this)}>
               <div className="mobile-back text-right">
                 <span>Back navbar</span>
                 <i className="fa fa-angle-right pl-2" aria-hidden="true"></i>
               </div>
+            </li> */}
+            <li className="logo-img-list">
+              <LogoImage logo={'drPizza-icon-120x120.png'} />
             </li>
             {MENUITEMS.map((menuItem, i) => {
               return (
@@ -85,20 +89,25 @@ const NavBar = (cartItems) => {
                   key={i}
                   className={` ${menuItem.megaMenu ? "mega-menu" : ""}`}
                   onClick={closeNav.bind(this)}
+                  style={{ marginLeft: "50px" }}
                 >
-                  <Link className="nav-link" to={menuItem.path}>
+                  {menuItem.path === "/register" ? <Link className="nav-link btn link-style signup" style={{ backgroundColor: "#41C485" }} to={menuItem.path}>
                     {" "}
                     {menuItem.title}
-                  </Link>
+                  </Link> : <Link className="nav-link link-style nav-item" to={menuItem.path}>
+                    {" "}
+                    {menuItem.title}
+                  </Link>}
+
                 </li>
               );
             })}
 
             <li>
-              <Link to="/cart" className="cart__link">
+              <Link to="/cart" className="btn btn-light cart__link" style={{ marginLeft: "20px", color: '#fff' }}>
                 <i className="fa fa-shopping-cart"></i>
                 <span>
-                  Cart <span className="cartlogo__badge">{getCartCount()}</span>
+                  <span className="cartlogo__badge">  {getCartCount()}</span>
                 </span>
               </Link>
             </li>
@@ -112,4 +121,4 @@ const mapStateToProps = (state) => ({
   cartItems: state.cart.cartItems
 });
 
-export default connect(mapStateToProps, {  })(NavBar);
+export default connect(mapStateToProps, {})(NavBar);

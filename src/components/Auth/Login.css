@@ -1,0 +1,30 @@
+.login-card-style {
+    background: rgba(153, 137, 137, 0.075);
+    box-shadow: 0 8px 32px 0 rgba(129, 61, 61, 0.37);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 30px;
+    display: block;
+    margin: 0 auto;
+}
+
+.pizza-svg {
+    width: 550px !important;
+    height: 200px !important;
+    margin: 20px 0
+}
+.card-body {
+    margin: 0 20px;
+}
+.hr-style {
+    border-color: #F38404;
+}
+
+@media only screen and (min-width: 768px) {
+    .login-card-style {
+        max-width: 540px;
+        height: 72%;
+    }
+ }

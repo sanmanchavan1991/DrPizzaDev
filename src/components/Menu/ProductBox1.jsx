@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Row, Col, Media, Modal, ModalBody } from "reactstrap";
-import MasterProductDetail from "./masterProductDetail";
+import MasterProductDetail from "./MasterProductDetail";
 
 
 const ProductItem = ({
@@ -51,7 +51,7 @@ const ProductItem = ({
     <div className="product-box product-wrap">
       <div className="img-wrapper">
         <div className="lable-block">
-         
+
         </div>
         <div className="front" //onClick={clickProductDetail}
         >
@@ -77,44 +77,14 @@ const ProductItem = ({
         ) : (
           ""
         )}
-
-        <div className={cartClass}>
-          
-          <Modal
-            isOpen={''}
-            toggle={''}
-            size="lg"
-            centered
-          >
-            <ModalBody>
-              <Row className="compare-modal">
-                <Col lg="12">
-                  <div className="media">
-                    <Media
-                      src={`${
-                        product.variants && image
-                          ? image
-                          : product.foodImage
-                      }`}
-                      alt=""
-                      className="img-fluid"
-                    />
-                    
-                  </div>
-                </Col>
-              </Row>
-            </ModalBody>
-          </Modal>
-        </div>
         {product.foodImage ? (
           <ul className="product-thumb-list">
-              <li
-                className={`grid_thumb_img ${
-                   "active" 
+            <li
+              className={`grid_thumb_img ${"active"
                 }`}
-              >
-               
-              </li>
+            >
+
+            </li>
           </ul>
         ) : (
           ""
@@ -122,14 +92,12 @@ const ProductItem = ({
       </div>
       <MasterProductDetail
         product={product}
-        productDetail={productDetail}
-        currency={symbol}
         uniqueTags={uniqueTags}
         title={title}
         des={des}
         variantChangeByColor={variantChangeByColor}
       />
-      
+
     </div>
   );
 };

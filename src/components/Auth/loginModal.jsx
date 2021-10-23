@@ -14,12 +14,17 @@ import {
   Input,
   NavLink,
   Alert,
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle
 } from "reactstrap";
+import './Login.css'
+import { ReactComponent as PizzaSvg } from '../../assets/images/authenticate/undraw_pizza_sharing_wxop.svg'
 import { connect } from "react-redux";
-import { login } from "../../actions/authAction";
-import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/commonLayout";
+import { login } from "../../Actions/authAction";
+import { clearErrors } from "../../Actions/errorActions";
+import CommonLayout from "../Layout/commonLayout";
 import { useHistory } from "react-router-dom";
+import HomePagePizzaImg from '../../assets/images/HomePage/home-pizza.jpg';
 
 const LoginModal = ({
   isAuthenticated,
@@ -79,85 +84,78 @@ const LoginModal = ({
   };
   console.log("isAdmin==>", isAdmin);
   return (
-    <div>
-      <CommonLayout parent="home" title="Login">
-        <section className="contact-page section-b-space">
-          <Container>
-            <Row className="section-b-space">
-              <Col lg="7" className="login-page-left"></Col>
-              <Col lg="1"></Col>
-              <Col lg="4" className="login-box">
-                {msg ? <span>{msg}</span> : null}
+    <div style={{ display: 'block', margin: '0 auto' }}>
+      <Card className="login-card-style">
+        <PizzaSvg className="Pizza-svg" />
+        <hr className="hr-style" />
+        <CardBody className="card-body">
+          <Form className="theme-form">
+            <FormGroup>
+              <Row>
+                <Col md="12" sm>
+                  <Label for="email" style={{ color: '#F38404', marginBottom: '8px' }}>Email</Label>
+                  <Input
+                    type="email"
+                    onChange={handleChangeEmail}
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter Your email"
+                    required
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12">
+                  <Label for="password" style={{ color: '#F38404', margin: '8px 0' }}>Password</Label>
+                  <Input
+                    type="password"
+                    onChange={handleChangePassword}
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                  />
+                </Col>
+              </Row>{" "}
+              <Row>
+                <Col md="4"></Col>
+                <Col md="5" style={{ margin: '18px 0 18px 18px' }}>
+                  <a
+                    style={{ textDecoration: "none", color: '#fff' }}
+                    onClick={handleClickForgotPass}
+                  >
+                    Forgot password?
+                  </a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md="3"></Col>
+                <Col md="4" sm="12">
+                  <button
+                    className="btn btn-danger"
+                    type="submit"
+                    onClick={handleOnSubmit}
+                  >
+                    Login
+                  </button>
+                </Col>
+                <Col md="4" sm="12">
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    onClick={handleOnRegister}
+                  >
+                    Sign Up
+                  </button>
+                </Col>
+              </Row>
+            </FormGroup>
+          </Form>
+        </CardBody>
+      </Card>
 
-                <Form className="theme-form">
-                  <FormGroup>
-                    <Row>
-                      <Col md="6" sm>
-                        <Label for="email">Email</Label>
-                        <Input
-                          type="email"
-                          onChange={handleChangeEmail}
-                          className="form-control"
-                          id="email"
-                          name="email"
-                          placeholder="Enter Your email"
-                          required
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="6">
-                        <Label for="password">Password</Label>
-                        <Input
-                          type="password"
-                          onChange={handleChangePassword}
-                          className="form-control"
-                          id="password"
-                          name="password"
-                          placeholder="Password"
-                          required
-                        />
-                      </Col>
-                    </Row>{" "}
-                    <Row>
-                      <Col md="3"></Col>
-                      <Col md="5">
-                        <a
-                          style={{ textDecoration: "none" }}
-                          onClick={handleClickForgotPass}
-                        >
-                          Forgot password?
-                        </a>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="2">
-                        <button
-                          className="btn btn-solid"
-                          type="submit"
-                          onClick={handleOnSubmit}
-                        >
-                          Login
-                        </button>
-                      </Col>
-                      <Col md="1"></Col>
-                      <Col md="4">
-                        <button
-                          className="btn btn-solid"
-                          type="submit"
-                          onClick={handleOnRegister}
-                        >
-                          Sign Up
-                        </button>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      </CommonLayout>
     </div>
   );
 };

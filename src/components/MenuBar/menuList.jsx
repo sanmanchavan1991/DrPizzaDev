@@ -5,23 +5,23 @@ export const MENUITEMS = [
     type: "link",
   },
   {
-    title: "Menus",
+    title: "Menu",
     path: "/menus",
-    type: "link",
-  },
-  {
-    title: "Register",
-    path: "/register",
-    type: "link",
-  },
-  {
-    title: "Login",
-    path: "/login",
     type: "link",
   },
   {
     title: "Admin",
     path: "/admin",
+    type: "link",
+  },
+  {
+    title: "Sign In",
+    path: "/login",
+    type: "link",
+  },
+  {
+    title: "Sign Up",
+    path: "/register",
     type: "link",
   },
 ];

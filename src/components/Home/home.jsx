@@ -1,15 +1,12 @@
-import AboutUs from "./about-us";
-import BannerSection from "./banner-section";
-import Sections from "./section";
-import Banner from "./SliderComponents/banner";
+import AboutUs from "./About-us";
+import BannerSection from "./Banner-section";
+import Sections from "./Section";
+import HomePage from "./HomePage";
 
 export const Home = (props) => {
   return (
     <div>
-      <Banner />
-      <AboutUs />
-      <BannerSection />
-      <Sections />
+      <HomePage />
     </div>
   );
 };
