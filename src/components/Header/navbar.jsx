@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 const NavBar = (cartItems) => {
   const [navClose, setNavClose] = useState({ right: "-410px" });
   const router = useRouter();
-  console.log('Hello WOrld==>',cartItems.cartItems)   
+  //console.log('Hello WOrld==>',cartItems.cartItems)   
   const getCartCount = () => {
-    return cartItems.cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
-    //return 0;
+    //return cartItems.cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
+    return 0;
   };
   useEffect(() => {
     if (window.innerWidth < 750) {
@@ -109,7 +109,7 @@ const NavBar = (cartItems) => {
   );
 };
 const mapStateToProps = (state) => ({
-  cartItems: state.cart.cartItems
+  cartItems:0 
 });
 
 export default connect(mapStateToProps, {  })(NavBar);

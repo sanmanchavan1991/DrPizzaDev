@@ -93,9 +93,10 @@ export const paymentConfiguration = (user,payment) => async (dispatch, getState)
       description: "Thank you for nothing. Please give us some money",
       image: "http://localhost:1337/logo.svg",
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+        console.log('payment initiated!')
       },
       prefill: {
         name:user?.username,
