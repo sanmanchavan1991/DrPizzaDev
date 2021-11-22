@@ -1,7 +1,7 @@
 import {
     Images_LOADED,
     Images_LOADING
-  } from '../actions/types'
+  } from '../Actions/types'
   const initialState = {
     images: [],
     isLoading: false   

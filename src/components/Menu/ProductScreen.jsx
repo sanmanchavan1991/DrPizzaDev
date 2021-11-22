@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { connect } from 'react-redux';
 
 // Actions
-import { getMenuDetails} from '../../actions/MenuAction';
+import { getMenuDetails } from '../../Actions/MenuAction';
 // import { getProductDetails } from "../redux/actions/productActions";
- import { addToCart } from "../../actions/cartActions";
+import { addToCart } from "../../Actions/cartActions";
 
-const ProductScreen = ({ getMenuDetails,menu,isLoading,error, match, history }) => {
+const ProductScreen = ({ getMenuDetails, menu, isLoading, error, match, history }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const [selectedCurr, selectedCurrency] = useState({
@@ -18,25 +18,26 @@ const ProductScreen = ({ getMenuDetails,menu,isLoading,error, match, history }) 
   });
 
   //let tempOutOfStock=5;
-// let loading=false;
-// let error=false;
-// console.log('useSelector((state) => state.getMenuDetails)==>',useSelector((state) => state.getMenuDetails))
+  // let loading=false;
+  // let error=false;
+  // console.log('useSelector((state) => state.getMenuDetails)==>',useSelector((state) => state.getMenuDetails))
 
-// const menuDetail = useSelector((state) => state.getMenuDetails);
-// console.log('menuDetail==>',menuDetail)
+  // const menuDetail = useSelector((state) => state.getMenuDetails);
+  // console.log('menuDetail==>',menuDetail)
 
-// console.log('id==>',match.params.id)
-// const { isLoading, error, menu } = menuDetail;
-useEffect(() => {if (menu && match.params.id !== menu._id) {
-    getMenuDetails(match.params.id);
-}
+  // console.log('id==>',match.params.id)
+  // const { isLoading, error, menu } = menuDetail;
+  useEffect(() => {
+    if (menu && match.params.id !== menu._id) {
+      getMenuDetails(match.params.id);
+    }
   }, [getMenuDetails]);
-   
-//   useEffect(() => {
-//     if (menu && match.params.id !== menu._id) {
-//       dispatch(getMenuDetails(match.params.id));
-//     }
-//   }, [dispatch, match, menu]);
+
+  //   useEffect(() => {
+  //     if (menu && match.params.id !== menu._id) {
+  //       dispatch(getMenuDetails(match.params.id));
+  //     }
+  //   }, [dispatch, match, menu]);
 
   const addToCartHandler = () => {
     dispatch(addToCart(menu._id, qty));
@@ -44,64 +45,58 @@ useEffect(() => {if (menu && match.params.id !== menu._id) {
   };
 
   return (
-    <div className="productscreen">
+    <div className="container" style={{ fontSize: '16px' }}>
       {isLoading ? (
         <h2>Loading...</h2>
       ) : error ? (
         <h2>{error}</h2>
       ) : (
         <>
-          <div className="productscreen__left">
-            <div className="left__image">
-              <img  alt={menu.foodName} /> 
-            </div>
-            <div className="left__info">
-              <p className="left__name">Food Description</p>
-              <p>Price: {menu.foodPrice}</p>
+          <div className="main">
+            <img className="food-image col-md-1" src={menu.foodImage} alt={menu.foodName} />
+            <div className="col-md-4">
+              <p style={{ color: '#e2293f', fontSize: '22px', textDecoration: 'underline' }}>{menu.foodName}</p>
+              <p>Price: {selectedCurr.symbol} {menu.foodPrice}</p>
               <p>Description: {menu.foodDesc}</p>
               <p>Size: {menu.foodSize}</p>
             </div>
-          </div>
-          <div className="productscreen__right">
-            <div className="right__info">
-              <p>
-                Price:
-                 <span>{selectedCurr.symbol} {menu.foodPrice}</span> 
-              </p>
+            <div className="col-md-5">
               <p>
                 Status:
                 <span>
-                   {menu.stockQuantity > 0 ? "In Stock" : "Out of Stock"} 
+                  {menu.stockQuantity > 0 ? " In Stock" : " Out of Stock"}
                 </span>
               </p>
               <p>
-                Qty
-                 <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                Quantity:
+                <select style={{ marginLeft: '18px', backgroundColor: '#555', color: '#fff' }} value={qty} onChange={(e) => setQty(e.target.value)}>
                   {[...Array(menu.stockQuantity).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
                     </option>
                   ))}
-                </select> 
+                </select>
               </p>
               <p>
-                <button type="button" onClick={addToCartHandler}>
+                <button type="button" style={{ backgroundColor: '#41C485', border: 'none', padding: '8px' }} onClick={addToCartHandler}>
                   Add To Cart
                 </button>
               </p>
             </div>
           </div>
+          <hr />
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 
 //export default ProductScreen;
 const mapStateToProps = (state) => ({
-    menu: state.menuDetail.menu,
-    isLoading: state.menuDetail.isLoading,
-    error: state.menuDetail.error
-  });
-  
-   export default connect(mapStateToProps, { getMenuDetails })(ProductScreen);
+  menu: state.menuDetail.menu,
+  isLoading: state.menuDetail.isLoading,
+  error: state.menuDetail.error
+});
+
+export default connect(mapStateToProps, { getMenuDetails })(ProductScreen);

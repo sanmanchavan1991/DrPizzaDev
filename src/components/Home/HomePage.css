@@ -1,0 +1,36 @@
+body {
+    color: #fff;
+}
+.order-quote {
+    font-weight: bolder;
+    font-size: 2rem;
+}
+.brand-name {
+    font-family: 'Poppins-Bold';
+    font-size: 6rem;
+}
+.food-quote {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+.red-word {
+    color: #E2293F; 
+    font-family: 'Poppins-Bold';   
+}
+.home-page-pizza-img {
+    height: 50%;
+    border-radius: 50%;
+}
+.menu-link {
+    margin-left: 26px;
+    color: #F38404;
+    font-weight: bold;
+    border-bottom: 2px solid #F38404;
+}
+.menu-link:hover {
+    color: #F38404;
+    text-decoration: none;
+}
+.button-div {
+    margin-top: 80px;
+}

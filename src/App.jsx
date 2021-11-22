@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ThemeSettings from "./components/WebSiteTheme/theme-settings";
-import "./assets/scss/app.scss";
+import "./App.css"
 import { Navigation } from "./components/Navigation/navigation";
 import { Menus } from "./components/Menu/menus";
 import { Home } from "./components/Home/home";
@@ -13,16 +13,16 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import MasterFooterTwo from "./components/footers/common/MasterFooterTwo";
+import MasterFooterTwo from "./components/Footers/Common/masterFooterTwo";
 import Contact from "./components/Contact-Us/contact";
 import Error from "./components/Error/error";
 import PageNotFound from "./components/Error/pageNotFound";
-import RegisterModal from "./components/Auth/RegisterModal";
-import LoginModal from "./components/Auth/LoginModal";
+import RegisterModal from "./components/Auth/registerModal";
+import LoginModal from "./components/Auth/loginModal";
 import resetPassword from "./components/Auth/resetPassword";
 
 import ProductScreen from "./components/Menu/ProductScreen";
-import CartScreen from "./components/Cart/CartScreen";
+import CartScreen from "./components/Cart/cartScreen";
 import AdminCheck from "./components/Admin/AdminCheck";
 import ForgotPassModal from "./components/Auth/forgotPassword";
 
@@ -61,14 +61,14 @@ const App = () => {
           </Switch>
         </Provider>
         <ThemeSettings />
-        <MasterFooterTwo
+        {/* <MasterFooterTwo
           footerClass={`footer-light footer-christmas bg-size`}
           footerLayOut={"light-layout upper-footer"}
           footerSection={"small-section border-section border-top-0"}
           belowSection={"section-b-space light-layout"}
           newLatter={false}
           logoName={"logo/f5.png"}
-        />
+        /> */}
       </div>
     </Router>
   );

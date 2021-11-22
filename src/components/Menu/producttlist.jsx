@@ -1,220 +1,94 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Col, Row, Media, Button, Spinner } from "reactstrap";
-import Menu2 from "../../../src/assets/images/mega-menu/22.jpg";
-import { CurrencyContext } from "../../../src/components/Currency/CurrencyContext";
-import ProductItem from "./ProductBox1";
-import { getMenus} from '../../actions/MenuAction';
+import './ProductList.css';
+import { getMenus } from '../../Actions/MenuAction';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+import { login } from "../../Actions/authAction";
+import { clearErrors } from "../../Actions/errorActions";
 
 
-const ProductList = ({ getMenus,menus ,colClass, layoutList, openSidebar, noSidebar }) => {
+const ProductList = ({ getMenus, menus, colClass, layoutList, userAdmin }) => {
   const [selectedCurr, selectedCurrency] = useState({
     currency: "INR",
     symbol: "₹",
     value: 1,
   });
-
-
-
-
-
-  // const [menuData, setMenuData] = useState({})
-  const [error, setError] = useState();
-  // useEffect(() => {
-  
-  //   FirestoreService.getMenuData()
-  //     .then(response => {
-  //       const fetchedDesignData = [];
-  //       response.docs.forEach(document => {
-  //         setError(null);
-  //         fetchedDesignData.push(document.data());
-  //       });
-  //       setMenuData(fetchedDesignData);
-  //     })
-  //     .catch(error => {
-  //       setError(error);
-  //       console.log('FirestoreService error==>', error)
-  //     });
-  // }, []);
-
+  const [error, setError] = useState()
+  const [image, setImage] = useState("");
+  const [modal, setModal] = useState(false);
+  const [modalCompare, setModalCompare] = useState(false);
+  const toggleCompare = () => setModalCompare(!modalCompare);
+  const toggle = () => setModal(!modal);
+  const uniqueTags = [];
+  const [grid, setGrid] = useState(colClass);
+  const [layout, setLayout] = useState(layoutList);
+  const [isAdminAccount, setIsAdminAccount] = useState(false);
   useEffect(() => {
     getMenus();
-  }, [getMenus]);
-
-  const curContext = useContext(CurrencyContext);
-  const [grid, setGrid] = useState(colClass);
-  const [isLoading, setIsLoading] = useState(false);
-  const [layout, setLayout] = useState(layoutList);
+    if (userAdmin && userAdmin.isAdmin) {
+      setIsAdminAccount(true);
+    }
+  }, [getMenus, isAdminAccount, userAdmin]);
+  const onClickHandle = (img) => {
+    setImage(img);
+  };
+  const changeQty = (e) => {
+    setQuantity(parseInt(e.target.value));
+  };
+  const clickProductDetail = () => {
+    const titleProps = product.title.split(" ").join("");
+    router.push(`/product-details/${product.id}` + "-" + `${titleProps}`);
+  };
+  const variantChangeByColor = (imgId, product_images) => {
+    product_images.map((data) => {
+      if (data.image_id == imgId) {
+        setImage(data.src);
+      }
+    });
+  };
   return (
-    <Col className="collection-content">
-      <div className="page-main-content">
-        <Row>
-          <Col sm="12">
-            <div className="top-banner-wrapper">
-              <a href={null}>
-                <Media
-                  src={Menu2}
-                  className="img-fluid blur-up lazyload"
-                  alt=""
-                />
-              </a>
-              <div className="top-banner-content small-section">
-                {/* <h4>fashion</h4>
-                <h5>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
-                </h5>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
-                </p> */}
+    <div className="menu-container">
+      <div className="row">
+        {menus && menus.length > 0 && menus.map((product, i) =>
+        (
+          <div className="col-lg-6 col-sm-4">
+            <div className="card-style">
+              <div className="row">
+                <div className="col-md-4">
+                  <img src={`${image ? image : product.foodImage}`} class="image-style" alt="..." />
+                </div>
+                <div className="col-md-7">
+                  <div className="card-body card-body-style">
+                    <h5 className="card-title" style={{ fontSize: "28px", fontWeight: 'bold', color: "#F38404" }}>{product.foodName}</h5>
+                    <p className="card-text">{product.foodDesc}</p>
+                    <p className="card-text">Rs. {product.foodPrice}</p>
+                    <p className="card-text"><small className="text-muted">Qty: {product.stockQuantity}</small></p>
+                    <Link to={`/menu/${product._id}`} className="menu-view">
+                      View
+                    </Link>
+                  </div>
+                </div>
+                <div className="col-md-1">
+                  {isAdminAccount ?
+                    <Link className="btn btn-outline btn-light" to={{
+                      pathname: `/admin/`,
+                      state: { fromProductDetails: true, pid: product._id }
+                    }}>EDIT</Link> : ""}
+                </div>
               </div>
             </div>
-            <div className="collection-product-wrapper">
-              <div className="product-top-filter">
-
-                <Row>
-                  <Col>
-                    <div className="product-filter-content">
-                      <div className="search-count">
-                        <h5>
-                          {/* {data
-                         ? `Showing Products 1-${data.products.items.length} of ${data.products.total}`
-                         : "loading"}{" "} */}
-                          Result
-                        </h5>
-                      </div>
-                      <div className="collection-view">
-                        <ul>
-                          <li>
-                            <i
-                              className="fa fa-th grid-layout-view"
-                            //    onClick={() => {
-                            //      setLayout("");
-                            //      setGrid("col-lg-3");
-                            //    }}
-                            ></i>
-                          </li>
-                          <li>
-                            <i
-                              className="fa fa-list-ul list-layout-view"
-                            //    onClick={() => {
-                            //      setLayout("list-view");
-                            //      setGrid("col-lg-12");
-                            //    }}
-                            ></i>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        className="collection-grid-view"
-                        style={
-                          layout === "list-view"
-                            ? { opacity: 0 }
-                            : { opacity: 1 }
-                        }
-                      >
-                        <ul>
-                          <li>
-                            <Media
-                              src={`/assets/images/icon/2.png`}
-                              alt=""
-                              className="product-2-layout-view"
-                              //onClick={() => setGrid("col-lg-6")}
-                            />
-                          </li>
-                          <li>
-                            <Media
-                              src={`/assets/images/icon/3.png`}
-                              alt=""
-                              className="product-3-layout-view"
-                            //onClick={() => setGrid("col-lg-4")}
-                            />
-                          </li>
-                          <li>
-                            <Media
-                              src={`/assets/images/icon/4.png`}
-                              alt=""
-                              className="product-4-layout-view"
-                            //onClick={() => setGrid("col-lg-3")}
-                            />
-                          </li>
-                          <li>
-                            <Media
-                              src={`/assets/images/icon/6.png`}
-                              alt=""
-                              className="product-6-layout-view"
-                            // onClick={() => setGrid("col-lg-2")}
-                            />
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="product-page-per-view">
-                        <select
-                        //  onChange={(e) => setLimit(parseInt(e.target.value))}
-                        >
-                          <option value="10">10 Products Par Page</option>
-                          <option value="15">15 Products Par Page</option>
-                          <option value="20">20 Products Par Page</option>
-                        </select>
-                      </div>
-                      <div className="product-page-filter">
-                        <select //onChange={(e) => setSortBy(e.target.value)}
-                        >
-                          <option value="AscOrder">Sorting items</option>
-                          <option value="HighToLow">High To Low</option>
-                          <option value="LowToHigh">Low To High</option>
-                          <option value="Newest">Newest</option>
-                          <option value="AscOrder">Asc Order</option>
-                          <option value="DescOrder">Desc Order</option>
-                        </select>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </div>
-              <div className={`product-wrapper-grid ${layout}`}>
-                <Row>
-
-                  {menus && menus.length > 0 && menus.map((product, i) => (
-                    <div className={grid} key={i}>
-                      <div className="product">
-                        <div>
-                          {<ProductItem
-                            des={true}
-                            product={product}
-                            symbol={selectedCurr}
-                            cartClass="cart-info cart-wrap"
-
-                          />}
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                  }
-                </Row>
-              </div>
-
-            </div>
-          </Col>
-        </Row>
+          </div>
+        ))}
       </div>
-    </Col>
+    </div>
   );
 };
 
 //export default ProductList;
 const mapStateToProps = (state) => ({
   menus: state.menu.menus,
-  isLoading: state.menu.isLoading
+  isLoading: state.menu.isLoading,
+  isAuthenticated: state.auth.isAuthenticated,
+  userAdmin: state.auth.user,
 });
-
 export default connect(mapStateToProps, { getMenus })(ProductList);

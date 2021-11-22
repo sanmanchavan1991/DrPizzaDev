@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Slider from "react-slick";
-import MasterBanner from "./MasterBanner";
+import MasterBanner from "./masterBanner";
 import Service from "../Service/service4";
 
 const Data = [
