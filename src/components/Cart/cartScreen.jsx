@@ -4,21 +4,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { Row, Container } from 'reactstrap';
-import CommonLayout from '../layout/commonLayout';
+import { Row, Container, Col } from 'reactstrap';
+import CommonLayout from '../Layout/commonLayout';
 // Components
 import CartItem from "./cartItem";
 
 // Actions
-import { addToCart, removeFromCart } from "../../actions/cartActions";
+import { addToCart, removeFromCart } from "../../Actions/cartActions";
 
 const CartScreen = (cartItems) => {
   const dispatch = useDispatch();
 
-//   const cart = useSelector((state) => state.cart);
-//   const { cartItems } = cart;
-//console.log('Hello WOrld==>',cartItems.cartItems)   
-  useEffect(() => {}, []);
+  //   const cart = useSelector((state) => state.cart);
+  //   const { cartItems } = cart;
+  //console.log('Hello WOrld==>',cartItems.cartItems)   
+  useEffect(() => { }, []);
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(addToCart(id, qty));
@@ -37,52 +37,48 @@ const CartScreen = (cartItems) => {
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
   };
-
+  console.log('cart::', cartItems)
   return (
-    <CommonLayout title="Cart" parent="Home">
-      <section className="section-b-space">
-        <Container>
-          <Row>
-            <div className="cartscreen">
-              <div className="cartscreen__left">
-                <h2>Shopping Cart</h2>
-
-                { cartItems.cartItems.length === 0 ? (
-                  <div>
-                    Your Cart Is Empty <Link to="/">Go Back</Link>
-                  </div>
-                ) : (
-                  cartItems.cartItems.map((item) => (
-                    <CartItem
-                      key={item.product}
-                      item={item}
-                      qtyChangeHandler={qtyChangeHandler}
-                      removeHandler={removeFromCartHandler}
-                    />
-                  ))
-                )}
+    <Container className="" style={{ textAlign: 'center', fontSize: '22px' }}>
+      <div className="">
+        {
+          cartItems.cartItems.length === 0 ? (
+            <>
+              <div>
+                Your Cart Is Empty
               </div>
+              <Link to="/menus" style={{ color: '#f38404', textDecoration: 'none' }}>Go Back</Link>
+            </>
+          ) : (
+            cartItems.cartItems.map((item) => (
+              <>
+                <CartItem
+                  key={item.product}
+                  item={item}
+                  qtyChangeHandler={qtyChangeHandler}
+                  removeHandler={removeFromCartHandler}
+                />
+              </>
+            ))
+          )
+        }
+        <div>
+          <p>Subtotal ({getCartCount()}) items</p>
+          <p>${getCartSubTotal()}</p>
+        </div>
+        <div>
+          <button className="add-cart-btn">Proceed To Checkout</button>
+        </div>
+      </div >
 
-              <div className="cartscreen__right">
-                <div className="cartscreen__info">
-                  <p>Subtotal ({getCartCount()}) items</p>
-                  <p>${getCartSubTotal()}</p>
-                </div>
-                <div>
-                  <button>Proceed To Checkout</button>
-                </div>
-              </div>
-            </div>
-          </Row>
-        </Container>
-      </section>
-    </CommonLayout>
+
+    </Container >
   );
 };
 
 //export default CartScreen;
 const mapStateToProps = (state) => ({
-    cartItems: state.cart.cartItems
-  });
-  
-  export default connect(mapStateToProps, {  })(CartScreen);
+  cartItems: state.cart.cartItems
+});
+
+export default connect(mapStateToProps, {})(CartScreen);

@@ -17,9 +17,9 @@ import {
 } from "reactstrap";
 
 import { connect } from "react-redux";
-import { resetPassword } from "../../actions/resetPassAction";
-import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/commonLayout";
+import { resetPassword } from "../../Actions/resetPassAction";
+import { clearErrors } from "../../Actions/errorActions";
+import CommonLayout from "../Layout/commonLayout";
 import { useHistory, useParams } from "react-router-dom";
 
 const ResetPassword = ({ error, resetPassword, clearErrors }) => {

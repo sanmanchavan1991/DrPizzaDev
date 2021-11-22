@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import CommonLayout from '../layout/commonLayout';
+import CommonLayout from '../Layout/commonLayout';
 
 const PageNotFound = () => {
     return (

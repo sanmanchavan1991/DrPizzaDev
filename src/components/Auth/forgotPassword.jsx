@@ -17,9 +17,9 @@ import {
 } from "reactstrap";
 
 import { connect } from "react-redux";
-import { forgotPassword } from "../../actions/forgotPassAction";
-import { clearErrors } from "../../actions/errorActions";
-import CommonLayout from "../layout/commonLayout";
+import { forgotPassword } from "../../Actions/forgotPassAction";
+import { clearErrors } from "../../Actions/errorActions";
+import CommonLayout from "../Layout/commonLayout";
 //import { useHistory } from "react-router-dom";
 
 const ForgotPassModal = ({ error, forgotPassword, clearErrors }) => {

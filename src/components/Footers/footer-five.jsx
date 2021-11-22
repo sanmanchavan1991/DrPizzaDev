@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
-import CopyRight from "./common/copyright";
+import CopyRight from "./Common/copyright";
 import { Container, Col, Row, Collapse } from "reactstrap";
-import LogoImage from "../header/logo";
+import LogoImage from "../Header/logo";
 
 const FooterFive = ({ layoutClass, logoName }) => {
   const [isOpen, setIsOpen] = useState();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ConfirmMsg from "./confirmMsg";
-import { getMenuDetails } from "../../actions/menuAction";
+import { getMenuDetails } from "../../Actions/MenuAction";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 

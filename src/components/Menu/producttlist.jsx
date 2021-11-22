@@ -55,7 +55,7 @@ const ProductList = ({ getMenus, menus, colClass, layoutList, userAdmin }) => {
             <div className="card-style">
               <div className="row">
                 <div className="col-md-4">
-                  <img src={`${image ? image : product.foodImage}`} class="img-fluid rounded-start image-style" alt="..." />
+                  <img src={`${image ? image : product.foodImage}`} class="image-style" alt="..." />
                 </div>
                 <div className="col-md-7">
                   <div className="card-body card-body-style">

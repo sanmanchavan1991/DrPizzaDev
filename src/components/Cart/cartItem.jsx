@@ -1,21 +1,21 @@
 import "./CartItem.css";
 import { Link } from "react-router-dom";
-
+import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
+  console.group('item', item)
   return (
-    
-    <div className="cartitem">
-      <div className="cartitem__image">
+    <div className="  ">
+      <div className="item-image">
         <img src={item.imageUrl} alt={item.name} />
       </div>
-      <Link to={`/menu/${item.product}`} className="cartItem__name">
-        <p>{item.name}</p>
+      <Link to={`/menu/${item.product}`} style={{ textDecoration: 'none' }} >
+        <p className="item-name">{item.name}</p>
       </Link>
-      <p>${item.price}</p>
+      <p className="item-price">${item.price}</p>
       <select
         value={item.qty}
         onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
-        className="cartItem__select"
+        className="select-style"
       >
         {[...Array(item.stockQuantity).keys()].map((x) => (
           <option key={x + 1} value={x + 1}>
@@ -24,10 +24,11 @@ const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
         ))}
       </select>
       <button
-        className="cartItem__deleteBtn"
+        className="item-delete"
         onClick={() => removeHandler(item.product)}
       >
-        <i className="fas fa-trash"></i>
+        Remove
+        {/* <i className="fas fa-trash"></i> */}
       </button>
     </div>
   );
